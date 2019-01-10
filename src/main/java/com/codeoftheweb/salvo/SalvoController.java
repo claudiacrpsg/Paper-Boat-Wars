@@ -1,12 +1,15 @@
 package com.codeoftheweb.salvo;
 
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -30,6 +33,12 @@ public class SalvoController {
     public List<Object> getGame() {
         return gameRep.findAll().stream().map(Game -> gameDTO(Game)).collect(toList());
     }
+
+    @RequestMapping("/gamePlayer")
+    public List<GamePlayer> getGamePlayer() {
+        return gamePlayerRep.findAll();
+    }
+
 
     private Map<String, Object> gameDTO(Game game) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
@@ -57,9 +66,17 @@ public class SalvoController {
         return dto;
     }
 
-    @RequestMapping("/gamePlayer")
-    public List<GamePlayer> getGamePlayer() {
-        return gamePlayerRep.findAll();
+
+    @RequestMapping("/game_view/{gameId}")
+    public Map<String, Object> gameViewDTO (@PathVariable Long gameId){
+        GamePlayer gamePlayer = gamePlayerRep.getOne(gameId);
+
+        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        dto.put("GameId", gamePlayer.getGame().getId());
+        dto.put("created", gamePlayer.getGame().getDate());
+        dto.put("GamePlayers", gamePlayer.getGame().getGamePlayers().stream().map(gamePlayer1 -> gamePlayerDTO(gamePlayer1)).collect(Collectors.toList()));
+
+        return dto;
     }
 
 }

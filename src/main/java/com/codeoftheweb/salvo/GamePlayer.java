@@ -27,6 +27,7 @@ public class GamePlayer {
     private Set<Ship> ships = new HashSet<>();
 
 
+
     public GamePlayer() { }
 
     public GamePlayer (Player player, Game game) {
@@ -54,16 +55,24 @@ public class GamePlayer {
         this.game = game;
     }
 
+
+    public Set<Ship> getShips() {
+        return this.ships;
+    }
+
+    public void addShip (Ship ship){
+        this.ships.add(ship);
+        ship.setGamePlayer(this);
+    }
+
     @Override
     public String toString() {
         return "GamePlayer{" +
                 "id=" + id +
                 ", player=" + player +
                 ", game=" + game +
+                ", ships=" + ships +
                 '}';
     }
 
-    public Set<Ship> getShips() {
-        return this.ships;
-    }
 }
