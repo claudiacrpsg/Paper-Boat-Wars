@@ -72,21 +72,21 @@ public class SalvoApplication {
 				gp2.addShip(s6);
 				gp2.addShip(s7);
 				gp2.addShip(s8);
-				GamePlayer gp3 = new GamePlayer(p3, g2);
-				gp3.addShip(s1);
-				gp3.addShip(s2);
-				gp3.addShip(s3);
-				gp3.addShip(s4);
-				GamePlayer gp4 = new GamePlayer(p4, g2);
-				gp4.addShip(s1);
-				gp4.addShip(s2);
-				gp4.addShip(s3);
-				gp4.addShip(s4);
+//				GamePlayer gp3 = new GamePlayer(p3, g2);
+//				gp3.addShip(s1);
+//				gp3.addShip(s2);
+//				gp3.addShip(s3);
+//				gp3.addShip(s4);
+//				GamePlayer gp4 = new GamePlayer(p4, g2);
+//				gp4.addShip(s1);
+//				gp4.addShip(s2);
+//				gp4.addShip(s3);
+//				gp4.addShip(s4);
 
 				gamePlayerRep.save(gp1);
 				gamePlayerRep.save(gp2);
-				gamePlayerRep.save(gp3);
-				gamePlayerRep.save(gp4);
+//				gamePlayerRep.save(gp3);
+//				gamePlayerRep.save(gp4);
 
 				shipRep.save(s1);
 				shipRep.save(s2);

@@ -1,0 +1,15 @@
+body{
+font-family: arial;
+}
+
+td{
+border: solid 3px black;
+width: 20px;
+height: 35px;
+}
+
+#grid{
+  border-collapse: collapse;
+  width: 500px;
+  text-align: center;
+}
