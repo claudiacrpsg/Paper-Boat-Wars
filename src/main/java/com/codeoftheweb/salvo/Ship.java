@@ -34,6 +34,7 @@ public class Ship {
         this.id = id;
         this.type = type;
         this.location = location;
+        this.gamePlayer = gamePlayer;
     }
 
     public Long getId() {

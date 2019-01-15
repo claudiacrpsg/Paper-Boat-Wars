@@ -13,3 +13,24 @@ height: 35px;
   width: 500px;
   text-align: center;
 }
+
+.submarine{
+  background-color: blue;
+}
+
+.patrolBoat{
+  background-color:palevioletred;
+}
+
+.battelship{
+  background-color:orange;
+}
+
+.carrier{
+  background-color:greenyellow;
+}
+
+.destroyer{
+  background-color:purple;
+}
+

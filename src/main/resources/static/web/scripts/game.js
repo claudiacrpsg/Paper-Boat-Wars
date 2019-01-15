@@ -2,26 +2,46 @@ let shipGrid = new Vue({
     el: "#shipGrid",
     data: {
     numbers: [" ","1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    letters: [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+    letters: [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+    data: "",
+    gp: "",
     },
     methods: {
-
+        getId: function(){
+            var url = new URL(window.location.href);
+            this.gp = url.searchParams.get("gp");
+            this.getData();
+        },
+        getData: function(){
+          fetch('/api/game_view/' + this.gp)
+                         .then((res) => res.json())
+                         .then((json) => {
+                             this.data = json;
+                             console.log(this.data);
+                             this.colorThisSquare(this.data);
+                         })
+                         .catch((err) => {
+                             console.log(err);
+                         })
+                 },
+                 colorThisSquare: function(data){
+                    var ships = data.Ships;
+                    for(j = 0; j < ships.length; j++){
+                        for(i = 0; i < data.Ships[j].Location.length; i++){
+                            var shipLocations = data.Ships[j].Location[i];
+                            console.log(shipLocations);
+                        
+                            document.getElementById(data.Ships[j].Location[i]).className += data.Ships[j].Type;
+                         
+                    }
+                    }
+                },
     },
-    created(){
-    fetch("http://localhost:8080/api/game_view/1", {
-        }).then(function (result) {
-            return result.json()
-        }).then(function (dataData) {
-            data = dataData;
-            console.log(data);
-        })
-    }
+    
+    created: function(){
+        this.getId();
+    },
 });
-
-
-
-
-
 
 
 //function grid() {
