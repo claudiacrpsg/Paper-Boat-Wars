@@ -1,11 +1,9 @@
 package com.codeoftheweb.salvo;
-
 import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +84,17 @@ public class SalvoController {
         dto.put("ShipId", ship.getId());
         dto.put("Type", ship.getType());
         dto.put("Location", ship.getLocation());
+
+        return dto;
+    }
+
+    @RequestMapping("/salvo")
+    public Map<String, Object> salvoDTO(Salvo salvo) {
+        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        dto.put("SalvoId", salvo.getId());
+        dto.put("GamePlayer", salvo.getGamePlayer());
+        dto.put("SalvoLocation", salvo.getSalvoLocation());
+        dto.put("Turn", salvo.getturnNumber());
 
         return dto;
     }

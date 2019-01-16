@@ -6,8 +6,14 @@
     <link rel="stylesheet" href="styles/game.css">
 </head>
 <body>
+      
 <div id="shipGrid">
+        
+    
     <h1>Ship Locations!</h1>
+    <h4>{{gamePlayer1}} (you) Vs {{gamePlayer2}}</h4>
+    <div class="flex">  
+    <div>
     <table id="grid">
        <tr v-for="letter,i in letters">
            <td v-for="number,j in numbers" v-bind:id="letter + number">
@@ -17,6 +23,20 @@
            </td>
        </tr>
     </table>
+</div>
+
+<div>
+    <table id="grid">
+        <tr v-for="letter,i in letters">
+            <td v-for="number,j in numbers" v-bind:id="letter + number">
+         <span v-if="i==0 || j ==0">
+             {{letter + number}}
+         </span>
+            </td>
+        </tr>
+     </table>
+     </div>
+     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
