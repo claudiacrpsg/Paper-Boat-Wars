@@ -36,7 +36,7 @@ let shipGrid = new Vue({
                     var shipLocations = data
                         .Ships[j]
                         .Location[i];
-                    console.log(shipLocations);
+                    // console.log(shipLocations);
                     document
                         .getElementById(data.Ships[j].Location[i])
                         .className += data
@@ -47,14 +47,16 @@ let shipGrid = new Vue({
         },
         getGPlayers: function (data) {
             var id = this.gp;
-            console.log(id)
+            // console.log(id);
             for (i = 0; i < data.GamePlayers.length; i++) {
               if(data.GamePlayers[i].id == id){
                 this.gamePlayer1 = data.GamePlayers[i].player.userName;
-              
                 }else{
                     this.gamePlayer2 = data.GamePlayers[i].player.userName;
                   
+                }
+                if(data.GamePlayers.length == 1){
+                    this.gamePlayer2 = "Waiting for oponent";
                 }
             }
         }

@@ -75,7 +75,6 @@ public class GamePlayer {
         salvo.setGamePlayer(this);
     }
 
-
     @Override
     public String toString() {
         return "GamePlayer{" +

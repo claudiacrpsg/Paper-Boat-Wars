@@ -1,5 +1,4 @@
 package com.codeoftheweb.salvo;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -58,6 +57,13 @@ public class SalvoApplication {
 				ArrayList<String> PatrolBoat1 = new ArrayList<String>();
 				PatrolBoat1.add("B4");
 				PatrolBoat1.add("B5");
+
+				//GPlayer #1 J.Bauer - salvoes
+				ArrayList<String> Salvo1 = new ArrayList<String>();
+				Salvo1.add("B5");
+				ArrayList<String> Salvo3 = new ArrayList<String>();
+				Salvo3.add("F2");
+
 				//GPlayer #2 C.Obrian- ships
 				ArrayList<String> Destroyer2 = new ArrayList<String>();
 				Destroyer2.add("B5");
@@ -67,10 +73,11 @@ public class SalvoApplication {
 				PatrolBoat2.add("F1");
 				PatrolBoat2.add("F2");
 
-				ArrayList<String> Salvo1 = new ArrayList<String>();
-				Salvo1.add("B5");
-				Salvo1.add("C5");
-				Salvo1.add("F1");
+				//GPlayer #2 C.Obrian- salvoes
+				ArrayList<String> Salvo2 = new ArrayList<String>();
+				Salvo2.add("B4");
+				ArrayList<String> Salvo4 = new ArrayList<String>();
+				Salvo4.add("E1");
 
 				//GPlayer#1 - New Ships
 				Ship s1 = new Ship("destroyer", Destroyer1);
@@ -80,22 +87,41 @@ public class SalvoApplication {
 				Ship s4 = new Ship("destroyer", Destroyer2);
 				Ship s5 = new Ship("patrolBoat", PatrolBoat2);
 
-				//GPlayer #1
+				//GPlayer #1 - Ships added
 				GamePlayer gp1 = new GamePlayer(p1, g1);
 				gp1.addShip(s1);
 				gp1.addShip(s2);
 				gp1.addShip(s3);
-				//GPlayer #2
+
+				//GPlayer#1 - New Salvo
+				Salvo sS1 = new Salvo(1, gp1, Salvo1);
+				Salvo sS3 = new Salvo(2, gp1, Salvo3);
+				//GPlayer #1 - Salvoes added
+				gp1.addSalvo(sS1);
+				gp1.addSalvo(sS3);
+
+				//GPlayer #2 - Ships added
 				GamePlayer gp2 = new GamePlayer(p2, g1);
 				gp2.addShip(s4);
 				gp2.addShip(s5);
 
-				Salvo salvoes1 = new Salvo(gp1, 1, Salvo1);
-				gp1.addSalvo(salvoes1);
-				salvoRep.save(salvoes1);
+				//GPlayer#2 - New Salvo
+				Salvo sS2 = new Salvo(1, gp2, Salvo2);
+				Salvo sS4 = new Salvo(2, gp2, Salvo4);
+				//GPlayer #2 - Salvoes added
+				gp2.addSalvo(sS2);
+				gp2.addSalvo(sS4);
+
 				//Saved GPlayers - Game #1
 				gamePlayerRep.save(gp1);
 				gamePlayerRep.save(gp2);
+
+				//Saved Salvos - Game #1
+				salvoRep.save(sS1);
+				salvoRep.save(sS2);
+				salvoRep.save(sS3);
+				salvoRep.save(sS4);
+
 				//Saved ships Game #1
 				shipRep.save(s1);
 				shipRep.save(s2);

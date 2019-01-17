@@ -14,6 +14,12 @@ height: 35px;
   text-align: center;
 }
 
+#grid2{
+  border-collapse: collapse;
+  width: 500px;
+  text-align: center;
+}
+
 .submarine{
   background-color:skyblue;
 }
@@ -44,5 +50,4 @@ height: 35px;
 h4{
   text-align: center;
 }
-
 

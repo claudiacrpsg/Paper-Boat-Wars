@@ -74,7 +74,7 @@ public class SalvoController {
         dto.put("created", gamePlayer.getGame().getDate());
         dto.put("GamePlayers", gamePlayer.getGame().getGamePlayers().stream().map(gamePlayer1 -> gamePlayerDTO(gamePlayer1)).collect(Collectors.toList()));
         dto.put("Ships", gamePlayer.getShips().stream().map(ship -> shipsDTO(ship)).collect(Collectors.toList()));
-
+        dto.put("Salvoes", gamePlayer.getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
         return dto;
     }
 
@@ -88,17 +88,14 @@ public class SalvoController {
         return dto;
     }
 
-    @RequestMapping("/salvo")
-    public Map<String, Object> salvoDTO(Salvo salvo) {
+    @RequestMapping("/salvoes")
+    public Map<String, Object> salvoesDTO(Salvo salvo) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("SalvoId", salvo.getId());
-        dto.put("GamePlayer", salvo.getGamePlayer());
+        dto.put("Turn", salvo.getTurn());
         dto.put("SalvoLocation", salvo.getSalvoLocation());
-        dto.put("Turn", salvo.getturnNumber());
 
         return dto;
     }
-
-
 
 }

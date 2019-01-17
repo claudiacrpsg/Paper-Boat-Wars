@@ -2,6 +2,7 @@ package com.codeoftheweb.salvo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +15,7 @@ public class Salvo {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
+    private Integer turn;
 
     @ElementCollection
     @Column(name="salvoLocation")
@@ -25,12 +26,14 @@ public class Salvo {
     private GamePlayer gamePlayer;
 
     public Salvo (){
+
     }
 
-    public Salvo (GamePlayer gamePlayer, Integer turn, List<String> salvoLocation) {
-        this.gamePlayer = gamePlayer;
+    public Salvo (Integer turn, GamePlayer gamePlayer, List<String> salvoLocation) {
+//        this.id = id;
         this.turn = turn;
         this.salvoLocation = salvoLocation;
+        this.gamePlayer = gamePlayer;
     }
 
     public Long getId() {
@@ -41,29 +44,35 @@ public class Salvo {
         this.id = id;
     }
 
+
     public Integer getTurn() {
         return turn;
     }
+
     public void setTurn(Integer turn) {
-        this.turnNumber = turn;
+        this.turn = turn;
     }
 
     public List<String> getSalvoLocation(){
         return salvoLocation;
     }
+
     public void setSalvoLocation(List<String> salvoLocation){
         this.salvoLocation = salvoLocation;
     }
 
-    //@JsonIgnore
+
+    @JsonIgnore
     public GamePlayer getGamePlayer(){
         return gamePlayer;
     }
+
     public void setGamePlayer(GamePlayer gamePlayer){
         this.gamePlayer = gamePlayer;
     }
 
     public String toString() {
-        return  id + " " + gamePlayer + "" + turn;
+        return  id + " " + turn;
     }
+
 }
