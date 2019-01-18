@@ -27,6 +27,7 @@ let shipGrid = new Vue({
                     this.getGPlayers(this.data);
                     this.getSalvoes(this.data);
                     this.getEnemySalvoes(this.data);
+                    this.hitOrMiss(this.data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -58,7 +59,7 @@ let shipGrid = new Vue({
       getSalvoes: function (data){
           for(i=0; i<data.Salvoes.length; i++){
               for(j=0; j<data.Salvoes[i].SalvoLocation.length; j++){ 
-              document.getElementById(data.Salvoes[i].SalvoLocation[j]).className += "salvoes";
+              document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").className += "salvoes";
           }
         }
       },
@@ -66,9 +67,21 @@ let shipGrid = new Vue({
         for(i=0; i<data.EnemySalvoes.length; i++){
             for(j=0; j<data.EnemySalvoes[i].SalvoLocation.length; j++){ 
             document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).className += "enemySalvoes";
-            console.log(data.EnemySalvoes[i].SalvoLocation[j])
+            // console.log(data.EnemySalvoes[i].SalvoLocation[j])
         }
       }
+    },
+    hitOrMiss: function(data){
+        for(d=0; d< data.Ships.length; d++){
+            console.log(data.Ships);
+            for(v=0; v< data.EnemySalvoes.length; v++){
+                console.log(data.EnemySalvoes)
+                if(data.Ships[d].Location[d] == data.EnemySalvoes[v].SalvoLocation[v]){
+                    document.getElementById(data.EnemySalvoes[v].SalvoLocation[v]).className += "hit";
+                    console.log(data.Ships[d].Location[d])
+                }
+            }
+        }
     }
     },
     created: function () {
