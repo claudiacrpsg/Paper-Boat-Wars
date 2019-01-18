@@ -28,7 +28,7 @@
 <div>
     <table id="grid2">
         <tr v-for="letter,i in letters">
-            <td v-for="number,j in numbers" v-bind:id="letter + number">
+            <td v-for="number,j in numbers" v-bind:id="letter + 's' + number">
          <span v-if="i==0 || j ==0">
              {{letter + number}}
          </span>

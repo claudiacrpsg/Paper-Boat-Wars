@@ -3,6 +3,7 @@ let shipGrid = new Vue({
     data: {
         numbers: [" ","1","2","3","4","5","6","7","8","9","10"],
         letters: [" ","A","B","C","D","E","F","G","H","I","J"],
+     
         data: "",
         gp: "",
         gamePlayer1: "",
@@ -24,6 +25,8 @@ let shipGrid = new Vue({
                     console.log(this.data);
                     this.colorThisSquare(this.data);
                     this.getGPlayers(this.data);
+                    this.getSalvoes(this.data);
+                    this.getEnemySalvoes(this.data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -33,15 +36,7 @@ let shipGrid = new Vue({
             var ships = data.Ships;
             for (j = 0; j < ships.length; j++) {
                 for (i = 0; i < data.Ships[j].Location.length; i++) {
-                    var shipLocations = data
-                        .Ships[j]
-                        .Location[i];
-                    // console.log(shipLocations);
-                    document
-                        .getElementById(data.Ships[j].Location[i])
-                        .className += data
-                        .Ships[j]
-                        .Type;
+                document.getElementById(data.Ships[j].Location[i]).className += "ships";
                 }
             }
         },
@@ -56,10 +51,25 @@ let shipGrid = new Vue({
                   
                 }
                 if(data.GamePlayers.length == 1){
-                    this.gamePlayer2 = "Waiting for oponent";
+                    this.gamePlayer2 = "Waiting for opponent";
                 }
             }
+        },
+      getSalvoes: function (data){
+          for(i=0; i<data.Salvoes.length; i++){
+              for(j=0; j<data.Salvoes[i].SalvoLocation.length; j++){ 
+              document.getElementById(data.Salvoes[i].SalvoLocation[j]).className += "salvoes";
+          }
         }
+      },
+      getEnemySalvoes: function (data){
+        for(i=0; i<data.EnemySalvoes.length; i++){
+            for(j=0; j<data.EnemySalvoes[i].SalvoLocation.length; j++){ 
+            document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).className += "enemySalvoes";
+            console.log(data.EnemySalvoes[i].SalvoLocation[j])
+        }
+      }
+    }
     },
     created: function () {
         this.getId();

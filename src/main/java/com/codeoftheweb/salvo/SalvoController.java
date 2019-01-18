@@ -66,7 +66,7 @@ public class SalvoController {
 
 
     @RequestMapping("/game_view/{gameId}")
-    public Map<String, Object> gameViewDTO (@PathVariable Long gameId){
+    private Map<String, Object> gameViewDTO (@PathVariable Long gameId){
         GamePlayer gamePlayer = gamePlayerRep.getOne(gameId);
 
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
@@ -75,8 +75,17 @@ public class SalvoController {
         dto.put("GamePlayers", gamePlayer.getGame().getGamePlayers().stream().map(gamePlayer1 -> gamePlayerDTO(gamePlayer1)).collect(Collectors.toList()));
         dto.put("Ships", gamePlayer.getShips().stream().map(ship -> shipsDTO(ship)).collect(Collectors.toList()));
         dto.put("Salvoes", gamePlayer.getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
+        dto.put("EnemySalvoes", oppGamePlayer(gamePlayer).getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
         return dto;
     }
+
+    //access enemy information
+    public GamePlayer oppGamePlayer(GamePlayer gamePlayer){
+        return gamePlayer.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayer.getId()).findAny().orElse(null);
+
+    }
+
+
 
     @RequestMapping("/ships")
     public Map<String, Object> shipsDTO(Ship ship) {

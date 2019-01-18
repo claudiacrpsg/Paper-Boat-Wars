@@ -60,9 +60,9 @@ public class SalvoApplication {
 
 				//GPlayer #1 J.Bauer - salvoes
 				ArrayList<String> Salvo1 = new ArrayList<String>();
-				Salvo1.add("B5");
+				Salvo1.add("Bs5");
 				ArrayList<String> Salvo3 = new ArrayList<String>();
-				Salvo3.add("F2");
+				Salvo3.add("Fs2");
 
 				//GPlayer #2 C.Obrian- ships
 				ArrayList<String> Destroyer2 = new ArrayList<String>();

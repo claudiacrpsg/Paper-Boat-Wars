@@ -20,25 +20,13 @@ height: 35px;
   text-align: center;
 }
 
-.submarine{
-  background-color:skyblue;
-}
 
-.patrolBoat{
-  background-color: yellow;
-}
 
-.battelship{
-  background-color:greenyellow;
-}
-
-.carrier{
+.ships{
   background-color:pink;
 }
 
-.destroyer{
-  background-color: orange;
-}
+
 
 .flex{
   display: flex;
@@ -49,5 +37,13 @@ height: 35px;
 
 h4{
   text-align: center;
+}
+
+.salvoes{
+  background-color: black;
+}
+
+.shipsenemySalvoes{
+  background-color: red;
 }
 
