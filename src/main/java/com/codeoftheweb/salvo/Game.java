@@ -23,14 +23,10 @@ public class Game{
     @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
     private Set<GamePlayer> gamePlayers = new HashSet<>(); //this has to be initialized
 
+
     public void addGamePlayer(GamePlayer gamePlayer) {
         gamePlayer.setGame(this);
         gamePlayers.add(gamePlayer);
-    }
-
-    public Game () {
-        this.date = new Date();
-        this.id = id;
     }
 
     public Date getDate() {

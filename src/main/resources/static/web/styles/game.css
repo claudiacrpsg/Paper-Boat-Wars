@@ -3,9 +3,12 @@ font-family: arial;
 }
 
 td{
-border: solid 3px black;
-width: 20px;
-height: 35px;
+border: solid 2px black;
+width: 40px;
+height: 40px;
+margin: 0px;
+padding: 0px;
+
 }
 
 #grid{
@@ -20,10 +23,16 @@ height: 35px;
   text-align: center;
 }
 
-
+.ships.enemySalvoes{
+  width: 40px;
+height: 40px;
+margin: 0px;
+padding: 0px;
+}
 
 .ships{
   background-color:pink;
+
 }
 
 
@@ -41,16 +50,22 @@ h4{
 
 .salvoes{
   background-color: black;
+  width: 40px;
+  height: 40px;
 }
 
-.shipssalvosenemySalvoes{
+.enemySalvoes{
   background-color: black;
+ 
 }
 
-.salvoeshit{
+.fire, .water{
+  width: 40px;
+  height: 40px;
+
+}
+
+/* .hit{
   background-color: darkmagenta;
-}
-
-.shipsenemySalvoeshit{
-  background-color: magenta;
-}
+ 
+} */

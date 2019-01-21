@@ -27,7 +27,6 @@ let shipGrid = new Vue({
                     this.getGPlayers(this.data);
                     this.getSalvoes(this.data);
                     this.getEnemySalvoes(this.data);
-                    this.hitOrMiss(this.data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -58,30 +57,39 @@ let shipGrid = new Vue({
         },
       getSalvoes: function (data){
           for(i=0; i<data.Salvoes.length; i++){
-              for(j=0; j<data.Salvoes[i].SalvoLocation.length; j++){ 
-              document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").className += "salvoes";
+              for(j=0; j<data.Salvoes[i].SalvoLocation.length; j++){
+                   document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").innerHTML = this.data.Salvoes[i].Turn; 
+                if(document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").classList.contains("ships")){
+              var img = document.createElement("img");
+              img.className = "fire";
+              img.src = "styles/death.gif";
+              document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
+                }else{
+                    var img = document.createElement("img");
+                    img.className = "water";
+                    img.src = "styles/water.gif";
+                    document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
+                }
           }
         }
       },
       getEnemySalvoes: function (data){
         for(i=0; i<data.EnemySalvoes.length; i++){
             for(j=0; j<data.EnemySalvoes[i].SalvoLocation.length; j++){ 
-            document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).className += "enemySalvoes";
-            // console.log(data.EnemySalvoes[i].SalvoLocation[j])
+            document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).innerHTML = this.data.EnemySalvoes[i].Turn;
+         if(document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("ships")){  
+         var img = document.createElement("img");
+            img.className = "fire";
+            img.src = "styles/death.gif";
+            document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).append(img);
+         }else{
+            var img = document.createElement("img");
+            img.className = "water";
+            img.src = "styles/water.gif";
+            document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).append(img);
+         }
         }
       }
-    },
-    hitOrMiss: function(data){
-        for(d=0; d< data.Ships.length; d++){
-            console.log(data.Ships);
-            for(v=0; v< data.EnemySalvoes.length; v++){
-                console.log(data.EnemySalvoes)
-                if(data.Ships[d].Location[d] == data.EnemySalvoes[v].SalvoLocation[v]){
-                    document.getElementById(data.EnemySalvoes[v].SalvoLocation[v]).className += "hit";
-                    console.log(data.Ships[d].Location[d])
-                }
-            }
-        }
     }
     },
     created: function () {
