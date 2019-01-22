@@ -28,9 +28,11 @@ public class Score {
     public Score() {
     }
 
-    public Score(Date date, Double score) {
+    public Score(Date date, Double score, Game game, Player player) {
         this.date = date;
         this.score = score;
+        this.game = game;
+        this.player = player;
     }
 
     public Long getId() {

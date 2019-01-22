@@ -13,7 +13,7 @@ public class SalvoApplication {
 		SpringApplication.run(SalvoApplication.class, args);
 	}
 		@Bean
-		public CommandLineRunner initData (PlayerRepository repository, GameRepository gameRep, GamePlayerRepository gamePlayerRep, ShipRepository shipRep, SalvoRepository salvoRep) {
+		public CommandLineRunner initData (PlayerRepository repository, GameRepository gameRep, GamePlayerRepository gamePlayerRep, ShipRepository shipRep, SalvoRepository salvoRep, ScoreRepository scoreRep) {
 			return (args) -> {
 				// Players
 				Player p1 = new Player("Jack Bauer", "j.bauer@ctu.gov");
@@ -129,6 +129,9 @@ public class SalvoApplication {
 				shipRep.save(s4);
 				shipRep.save(s5);
 
+				scoreRep.save(new Score(new Date(), 1.0, g1, p1));
+				scoreRep.save(new Score(new Date(), 0.0, g1, p2));
+
 
 				//Game #2 ----------------------------------------------------------------------------------------------
 				//Player #1 J.Bauer - ships
@@ -169,6 +172,9 @@ public class SalvoApplication {
 				shipRep.save(s7);
 				shipRep.save(s8);
 				shipRep.save(s9);
+
+				scoreRep.save(new Score(new Date(), 0.5, g2, p1));
+				scoreRep.save(new Score(new Date(), 0.5, g2, p2));
 
 				//Game #3 ----------------------------------------------------------------------------------------------
 				//Player #1 C.Obrian - ships

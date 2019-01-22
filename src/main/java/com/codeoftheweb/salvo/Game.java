@@ -29,6 +29,10 @@ public class Game{
         gamePlayers.add(gamePlayer);
     }
 
+    public Game(){
+        this.date = new Date();
+        this.id = id;
+    }
     public Date getDate() {
         return date;
     }

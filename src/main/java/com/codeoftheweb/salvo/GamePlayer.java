@@ -75,6 +75,11 @@ public class GamePlayer {
         salvo.setGamePlayer(this);
     }
 
+    public Score getScores(){ //this method allows access to scores via gameplayers
+        return this.player.getScore(this.game);
+    }
+
+
     @Override
     public String toString() {
         return "GamePlayer{" +

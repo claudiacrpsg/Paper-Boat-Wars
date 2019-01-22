@@ -40,6 +40,9 @@ public class Player {
         return scores.stream().filter(score -> score.getGame().equals(game)).findFirst().orElse(null);
     }
 
+    public Set<Score> getScores() {
+        return scores;
+    }
 
     public String getUserName() {
         return userName;

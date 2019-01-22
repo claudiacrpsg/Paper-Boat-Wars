@@ -46,7 +46,11 @@ public class SalvoController {
                 .stream()
                 .map(gamePlayer -> gamePlayerDTO(gamePlayer))
                 .collect(toList()));
-        dto.put("scores", game.getGamePlayers().stream().map(gamePlayer -> scoresDTO(gamePlayer.getPlayer().getScore(game))).collect(toList()));
+//        dto.put("scores", game.getGamePlayers()
+//                .stream()
+//                .filter(gamePlayer -> gamePlayer.getPlayer().getScore(game) != null)
+//                .map(gamePlayer -> scoresDTO(gamePlayer.getPlayer().getScore(game)))
+//                .collect(toList()));
         return dto;
     }
 
@@ -54,6 +58,11 @@ public class SalvoController {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("id", gamePlayer.getId());
         dto.put("player", playerDTO(gamePlayer.getPlayer()));
+        if(gamePlayer.getScores() != null) {
+            dto.put("score", gamePlayer.getScores().getScore());
+        }else{
+            dto.put("score", null);
+        }
         return dto;
     }
 
@@ -87,7 +96,6 @@ public class SalvoController {
     }
 
 
-
     @RequestMapping("/ships")
     public Map<String, Object> shipsDTO(Ship ship) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
@@ -114,8 +122,25 @@ public class SalvoController {
         dto.put("Score", score.getScore());
         dto.put("FinishDate", score.getDate());
         dto.put("Player", playerDTO(score.getPlayer()));
-
         return dto;
     }
+
+    @RequestMapping("/leaderboard")
+    public Map<String, Object> leaderboardDTO(GamePlayer gamePlayer) {
+        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        List<GamePlayer> gamePlayers = gamePlayerRep.findAll();
+        for (GamePlayer gp: gamePlayers) {
+            Map<String, Object> scores = new LinkedHashMap<String, Object>();
+            if(!scores.containsKey(gp.getPlayer().getUserName())){
+                scores.put("wins", gp.getPlayer().getScores().stream().filter(score -> score.getScore() == 1).count());
+                scores.put("losses", gp.getPlayer().getScores().stream().filter(score -> score.getScore() == 0).count());
+                scores.put("ties", gp.getPlayer().getScores().stream().filter(score -> score.getScore() == 0.5).count());
+                scores.put("TotalScore", gp.getPlayer().getScores().stream().mapToDouble(score -> score.getScore()).sum());
+                dto.put(gp.getPlayer().getUserName(), scores);
+            }
+        }
+        return dto;
+    }
+
 
 }
