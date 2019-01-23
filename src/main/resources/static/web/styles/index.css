@@ -1,9 +1,3 @@
-/* body {
-    background-image: url("../styles/austin-neill-685080-unsplash.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-} */
-
 body {
     width: 100vw;
     height: 100vh;
@@ -12,68 +6,26 @@ body {
     margin:0;
     font-family: 'Staatliches', cursive;
   }
-
-
-h1 {
-    text-align: start;
-    margin-top: 20px;
-    color: brown;
-    text-shadow: 2px 2px 4px#cec9c9;
-}
-
-h2 {
-    font-size: 24px;
-    text-align: center;
-    text-shadow: 2px 2px 4px#cec9c9;
-    color: brown;
-}
-
-
-td {
-    /* background-color: #F8F1E9; */
-    background-color: rgba(248, 241, 233, 0.8);
-
-}
-
-table {
-    text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-size: 14px;
-    color: #3D2410;
-}
-
-.flex {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
-
-i {
-    color: brown;
-    font-size: 24px;
-
-}
-
-.thead {
-    font-weight: bold;
-}
-
-.table1,
-.table2 {
-    margin-top: 30px;
-    text-shadow: none;
-}
-
-
-/* body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-image: linear-gradient(0deg, #022244, #58c8da);
-    margin:0;
-  } */
   
+
+h1{
+    text-align: center;
+    color: brown;
+    font-size: 80px;
+    text-shadow: 2px 2px 4px#cec9c9;
+}
+
+button{
+   padding: 0px;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ margin-top: 50px;
+}
     
   .ocean {
     position: relative;
@@ -222,14 +174,14 @@ i {
     top: 50%;
     left: 50%;
     box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.1);
-    animation: fish 40s ease-in infinite;
+    animation: fish 20s ease-in infinite;
   }
   
-      /* @keyframes fish {
+      @keyframes fish {
       0% { left: calc(100% + 30px); top: 60%;}
       50% {top: 40%}
       100% {left: -20%; top: 50%;}
-      } */
+      }
   
   /* fish tail */
   .fish::after, .fish::before {
