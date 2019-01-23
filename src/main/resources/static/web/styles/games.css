@@ -1,0 +1,56 @@
+body {
+    background-image: url("../styles/austin-neill-685080-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+h1 {
+    text-align: start;
+    margin-top: 20px;
+    color: #3D2410;
+    text-shadow: 2px 2px 4px#cec9c9;
+}
+
+h2 {
+    font-size: 24px;
+    text-align: center;
+    text-shadow: 2px 2px 4px#cec9c9;
+    color: #3D2410
+}
+
+
+td {
+    /* background-color: #F8F1E9; */
+    background-color: rgba(248, 241, 233, 0.8);
+
+}
+
+table {
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 14px;
+    color: #3D2410;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+i {
+    color: #3D2410;
+    font-size: 24px;
+
+}
+
+.thead {
+    font-weight: bold;
+}
+
+.table1,
+.table2 {
+    margin-top: 30px;
+    text-shadow: none;
+}

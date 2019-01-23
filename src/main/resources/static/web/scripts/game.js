@@ -62,7 +62,7 @@ let shipGrid = new Vue({
                 if(document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").classList.contains("ships")){
               var img = document.createElement("img");
               img.className = "fire";
-              img.src = "styles/death.gif";
+              img.src = "styles/fire.gif";
               document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
                 }else{
                     var img = document.createElement("img");
@@ -80,7 +80,7 @@ let shipGrid = new Vue({
          if(document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("ships")){  
          var img = document.createElement("img");
             img.className = "fire";
-            img.src = "styles/death.gif";
+            img.src = "styles/fire.gif";
             document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).append(img);
          }else{
             var img = document.createElement("img");

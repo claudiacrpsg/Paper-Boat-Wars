@@ -1,57 +1,84 @@
 body{
-font-family: arial;
+    background-image: url("../styles/austin-neill-685080-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 td{
-border: solid 2px black;
-width: 40px;
-height: 40px;
+border: solid 1px black;
+width: 30px;
+height: 30px;
 margin: 0px;
 padding: 0px;
+background-color: rgba(248, 241, 233, 0.8);
 
 }
 
 #grid{
   border-collapse: collapse;
-  width: 500px;
+  width: 450px;
   text-align: center;
 }
 
 #grid2{
   border-collapse: collapse;
-  width: 500px;
+  width: 450px;
   text-align: center;
 }
 
 .ships.enemySalvoes{
-  width: 40px;
-height: 40px;
+  width: 30px;
+height: 30px;
 margin: 0px;
 padding: 0px;
 }
 
 .ships{
-  background-color:pink;
+  background-color:#9FA3A2
 
 }
 
+table {
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 14px;
+  color: #3D2410;
+}
+
+.table1,
+.table2 {
+    margin-top: 30px;
+    text-shadow: none;
+}
 
 
 .flex{
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-h4{
+h2 {
+  font-size: 24px;
   text-align: center;
+  text-shadow: 2px 2px 4px#cec9c9;
+  color: #3D2410
 }
+
+h1 {
+  text-align: start;
+  margin-top: 20px;
+  color: #3D2410;
+  text-shadow: 2px 2px 4px#cec9c9;
+}
+
+
 
 .salvoes{
   background-color: black;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .enemySalvoes{
@@ -60,12 +87,15 @@ h4{
 }
 
 .fire, .water{
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 
 }
 
-/* .hit{
-  background-color: darkmagenta;
- 
-} */
+i {
+  color: #3D2410;
+  font-size: 24px;
+
+}
+
+
