@@ -1,20 +1,28 @@
 body {
-    width: 100vw;
     height: 100vh;
-    overflow: hidden;
     background-image: linear-gradient(0deg, #022244, #58c8da);
-    margin:0;
+    margin: 0;
     font-family: 'Staatliches', cursive;
-  }
+}
+
+/* Main Title and Boat */
+/* .flexTitle{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+} */
 
 h1 {
-  font-size: 50px;
+    font-size: 50px;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 30px;
     color: brown;
     text-shadow: 2px 2px 4px#cec9c9;
 }
 
+/* Games and Leaderboard Titles */
 h2 {
     font-size: 24px;
     text-align: center;
@@ -22,29 +30,51 @@ h2 {
     color: brown;
 }
 
-td {
-     background-color: whitesmoke;
-     font-weight: bold;
-}
-
+/* Tables */
 table {
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 14px;
     color: #2E2E2E;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
-.flex {
+thead {
+    font-weight: bold;
+}
+
+td {
+    padding: 15px;
+}
+
+.flexTables {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
 
-.table1,
-.table2 {
-    margin-top: 30px;
-    text-shadow: none;
+/* Boat Swing Animation */
+/* img {
+    width: 60px;
+    animation: swing 7s infinite ease;
+    text-align: center;
+    transform-origin: bottom center;
+    border-radius: 100%;
+    padding: 10px;
+ 
 }
 
-
+@keyframes swing {
+    0% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(-5deg);
+    }
+} */

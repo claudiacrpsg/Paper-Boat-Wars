@@ -9,72 +9,76 @@
     <link rel="shortcut icon" type="image/x-icon" href="../web/styles/redBoat.png">
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
     <link rel="stylesheet" href="styles/games.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
 </head>
 
 <body>
-        <div id="myVue">
-            <div class="container">
-                <h1>Paper Boat Wars</h1>
-                <div class="flex">
-                    <div class="table1">
-                        <h2>Games</h2>
-                        <table class="table table-hover">
-                            <thead class="thead">
-                                <tr>
-                                    <td>Game Nr</td>
-                                    <td>Date</td>
-                                    <td>Player 1</td>
-                                    <td>Player 2</td>
-                                    <td>Options</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="game in games">
-                                    <td>{{game.id}}</td>
-                                    <td>{{getDates(game.created)}}</td>
-                                    <td v-for="gamePlayer in game.gamePlayers" v-if="game.gamePlayers.length == 2">{{gamePlayer.player.userName}}</td>
-                                    <td v-if="game.gamePlayers.length == 1">{{game.gamePlayers[0].player.userName}}</td>
-                                    <td v-if="game.gamePlayers.length == 1">Waiting for opponent</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                    
-                    <div class="table2">
-                        <h2>Leaderboard</h2>
-                        <table class="table table-hover">
-                            <thead class="thead">
-                                <tr>
-                                    <td>Player Name</td>
-                                    <td>Wins</td>
-                                    <td>Losses</td>
-                                    <td>Ties</td>
-                                    <td>Total Score</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(score, index) in scores">
-                                    <td>{{index}}</td>
-                                    <td>{{score.wins}}</td>
-                                    <td>{{score.losses}}</td>
-                                    <td>{{score.ties}}</td>
-                                    <td>{{score.TotalScore}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <!-- Here is Vue! -->
+    <div id="myVue">
+        <div class="container">
+            <!-- Main title and Boat -->
+            <div class="flexTitle">
+                <!-- <div>
+                    <img src="../web/styles/orangeBoat.png">
+                </div> -->
+                <div>
+                    <h1>Paper Boat Wars</h1>
+                </div>
+            </div>
+            <!-- The tables -->
+            <div class="flexTables">
+                <!-- Table 1 - Games -->
+                <div class="table1">
+                    <h2>Games</h2>
+                    <table>
+                        <thead class="thead">
+                            <tr>
+                                <td>Game Nr</td>
+                                <td>Date</td>
+                                <td>Player 1</td>
+                                <td>Player 2</td>
+                                <td>Options</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="game in games">
+                                <td>{{game.id}}</td>
+                                <td>{{getDates(game.created)}}</td>
+                                <td v-for="gamePlayer in game.gamePlayers" v-if="game.gamePlayers.length == 2">{{gamePlayer.player.userName}}</td>
+                                <td v-if="game.gamePlayers.length == 1">{{game.gamePlayers[0].player.userName}}</td>
+                                <td v-if="game.gamePlayers.length == 1">Waiting for opponent</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Table 2 - Leaderboard -->
+                <div class="table2">
+                    <h2>Leaderboard</h2>
+                    <table>
+                        <thead class="thead">
+                            <tr>
+                                <td>Player Name</td>
+                                <td>Wins</td>
+                                <td>Losses</td>
+                                <td>Ties</td>
+                                <td>Total Score</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(score, index) in scores">
+                                <td>{{index}}</td>
+                                <td>{{score.wins}}</td>
+                                <td>{{score.losses}}</td>
+                                <td>{{score.ties}}</td>
+                                <td>{{score.TotalScore}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
+    </div>
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="scripts/games.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
