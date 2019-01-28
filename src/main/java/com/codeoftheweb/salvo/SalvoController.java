@@ -3,6 +3,7 @@ import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -33,10 +34,23 @@ public class SalvoController {
         return repository.findAll();
     }
 
+
     @RequestMapping("/games")
-    public List<Object> getGame() {
-        return gameRep.findAll().stream().map(Game -> gameDTO(Game)).collect(toList());
+    public Map<String, Object> getGame(Authentication authentication) {
+        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        if(isGuest(authentication)){
+            dto.put("currentPlayer", null);
+        }else{
+            dto.put("currentPlayer", playerDTO(isAuth(authentication)));
+        }
+        dto.put("games", gameRep
+                .findAll()
+                .stream()
+                .map(game -> gameDTO(game))
+                .collect(toList()));
+    return dto;
     }
+
 
     @RequestMapping("/gamePlayer")
     public List<GamePlayer> getGamePlayer() {
@@ -52,11 +66,6 @@ public class SalvoController {
                 .stream()
                 .map(gamePlayer -> gamePlayerDTO(gamePlayer))
                 .collect(toList()));
-//        dto.put("scores", game.getGamePlayers()
-//                .stream()
-//                .filter(gamePlayer -> gamePlayer.getPlayer().getScore(game) != null)
-//                .map(gamePlayer -> scoresDTO(gamePlayer.getPlayer().getScore(game)))
-//                .collect(toList()));
         return dto;
     }
 
@@ -160,13 +169,18 @@ public class SalvoController {
         }
 
         if (repository.findByEmail(email) !=  null) {
-            return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
 
         repository.save(new Player(userName, email, passwordEncoder.encode(password)));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    private boolean isGuest(Authentication authentication) {
+        return authentication == null || authentication instanceof AnonymousAuthenticationToken;
+    }
 
-
+    private Player isAuth (Authentication authentication){
+        return repository.findByEmail(authentication.getName());
+    }
 }

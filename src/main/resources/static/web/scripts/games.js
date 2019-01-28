@@ -5,6 +5,7 @@ let tables = new Vue({
       scores: {},
     player1: "",
     player2: "",
+    users: "",
     },
     methods: {
         getGames: function () {
@@ -15,7 +16,8 @@ let tables = new Vue({
             .then((data) => {
                tables.games = data;
                console.log(this.games);
-            // this.getPlayers(data);
+            this.user = data.currentPlayer.userName;
+            console.log(this.user)
             });
       },
     
