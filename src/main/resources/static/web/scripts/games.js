@@ -16,8 +16,8 @@ let tables = new Vue({
             .then((data) => {
                tables.games = data;
                console.log(this.games);
-            this.user = data.currentPlayer.userName;
-            console.log(this.user)
+            this.users = data.currentPlayer.userName;
+            console.log(this.users)
             });
       },
     
@@ -46,11 +46,21 @@ let tables = new Vue({
         var year = date.getFullYear();
         return day + ' ' + monthNames[monthIndex] + ' ' + year;
        },
+      
+       logOut: function() {
+         fetch('/api/logout' , {
+             method: 'POST',
+         }).then(function(response) {
+            location.replace("http://localhost:8080/web/index.html")
+             return response.json();
+         });
+      }
 
     },
      created(){
 this.getGames();
 this.getScores();
+
      },
 
         

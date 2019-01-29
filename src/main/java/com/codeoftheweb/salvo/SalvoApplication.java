@@ -425,11 +425,12 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/web/games.html").hasAuthority("USER")
-                .antMatchers("/web/games.css").hasAuthority("USER")
-                .antMatchers("/web/games.js").hasAuthority("USER")
+                .antMatchers("/web/styles/games.css").hasAuthority("USER")
+                .antMatchers("/web/scripts/games.js").hasAuthority("USER")
                 .antMatchers("/web/game.html").hasAuthority("USER")
-                .antMatchers("/web/game.css").hasAuthority("USER")
-                .antMatchers("/web/game.js").hasAuthority("USER")
+                .antMatchers("/web/styles/game.css").hasAuthority("USER")
+                .antMatchers("/web/scripts/game.js").hasAuthority("USER")
+                .antMatchers("api/players").permitAll()
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/styles/index.css").permitAll()
                 .antMatchers("/web/scripts/index.js").permitAll();

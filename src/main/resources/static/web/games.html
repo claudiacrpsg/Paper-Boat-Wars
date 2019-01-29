@@ -17,12 +17,15 @@
         <div class="container">
             <!-- Main title and Boat -->
             <div class="flexTitle">
-                <!-- <div>
+                <div>
                     <img src="../web/styles/orangeBoat.png">
-                </div> -->
+                </div>
                 <div>
                     <h1>Paper Boat Wars</h1>
-                  <h5>Hello {{user}}</h5>
+                    <h5>Hello {{users}}!</h5>
+                </div>
+                <div v-on:click="logOut()">
+                    <button type="button" class="btn">Log Out</button>
                 </div>
             </div>
             <!-- The tables -->
@@ -41,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="game in games">
+                            <tr v-for="game in games.games">
                                 <td>{{game.id}}</td>
                                 <td>{{getDates(game.created)}}</td>
                                 <td v-for="gamePlayer in game.gamePlayers" v-if="game.gamePlayers.length == 2">{{gamePlayer.player.userName}}</td>

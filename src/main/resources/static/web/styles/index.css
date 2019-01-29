@@ -118,11 +118,6 @@ h1 {
   }
 }
 
-.boat1::before {
-  top: 42%;
-  transform: rotate(20deg);
-}
-
 /* Boat 2 Animation*/
 .boat2 {
   width: 150px;
@@ -148,11 +143,6 @@ h1 {
   }
 }
 
-.boat2::before {
-  top: 42%;
-  transform: rotate(20deg);
-}
-
 /* Boat 3 Animation*/
 .boat3 {
   width: 150px;
@@ -176,9 +166,4 @@ h1 {
     left: -20%;
     top: 75%;
   }
-}
-
-.boat3::before {
-  top: 42%;
-  transform: rotate(20deg);
 }

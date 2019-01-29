@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +30,10 @@ public class SalvoController {
     private PasswordEncoder passwordEncoder;
 
 
-    @RequestMapping("/players")
-    public List<Player> getPlayer() {
-        return repository.findAll();
-    }
+//    @RequestMapping("/players")
+//    public List<Player> getPlayer() {
+//        return repository.findAll();
+//    }
 
 
     @RequestMapping("/games")
@@ -160,21 +161,23 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/players", method = RequestMethod.POST)
-    public ResponseEntity<Object> register(
-           @RequestParam String userName,
-            @RequestParam String email, @RequestParam String password) {
-
-        if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+    public ResponseEntity<Object> register(@RequestBody Player player) {
+        if (player.getUserName().isEmpty() || player.getEmail().isEmpty() || player.getPassword().isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
-
-        if (repository.findByEmail(email) !=  null) {
+        if (repository.findByEmail(player.getEmail()) !=  null) {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
-
-        repository.save(new Player(userName, email, passwordEncoder.encode(password)));
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        repository.save(new Player(player.getUserName(), player.getEmail(),player.getPassword()));
+        return new ResponseEntity<>(playerInfo("userName", player.getUserName()), HttpStatus.CREATED);
     }
+
+    private Map<String, Object> playerInfo(String key, Object value) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(key, value);
+        return map;
+    }
+
 
     private boolean isGuest(Authentication authentication) {
         return authentication == null || authentication instanceof AnonymousAuthenticationToken;
