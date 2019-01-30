@@ -84,10 +84,12 @@ h1 {
 }
 
 @keyframes waves {
+
   0%,
   100% {
     transform: rotate(-1deg);
   }
+
   50% {
     transform: rotate(1deg);
   }
@@ -109,9 +111,11 @@ h1 {
     left: calc(100% + 30px);
     top: 75%;
   }
+
   50% {
     top: 70%
   }
+
   100% {
     left: -20%;
     top: 75%;
@@ -134,9 +138,11 @@ h1 {
     left: calc(100% + 30px);
     top: 75%;
   }
+
   50% {
     top: 70%
   }
+
   100% {
     left: -20%;
     top: 75%;
@@ -159,9 +165,11 @@ h1 {
     left: calc(100% + 30px);
     top: 75%;
   }
+
   50% {
     top: 70%
   }
+
   100% {
     left: -20%;
     top: 75%;

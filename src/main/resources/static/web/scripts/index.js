@@ -23,6 +23,7 @@ function logIn() {
         .catch(function (error) {
             console.log('Request failure: ', error);
         });
+
     function getBody(json) {
         var body = [];
         for (var key in json) {
@@ -34,33 +35,30 @@ function logIn() {
     }
 }
 
-
 function redirect() {
     location.replace("http://localhost:8080/web/games.html")
 }
 
-
-
 function signUp() {
 
-    fetch('/api/players' , {
+    fetch('/api/players', {
         credentials: 'include',
         method: 'POST',
         headers: {
- 
+
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             userName: document.getElementById("userName").value,
-        email: document.getElementById("email2").value,
-        password: document.getElementById("password").value,
+            email: document.getElementById("email2").value,
+            password: document.getElementById("password").value,
         })
-    }).then(function(response) {
+    }).then(function (response) {
         return response.json();
-    }).then(function(json) {
+    }).then(function (json) {
         console.log('parsed json', json)
- 
-    }).catch(function(ex) {
+
+    }).catch(function (ex) {
         console.log('parsing failed', ex)
     });
- }
+}

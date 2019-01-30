@@ -50,6 +50,22 @@
                                 <td v-for="gamePlayer in game.gamePlayers" v-if="game.gamePlayers.length == 2">{{gamePlayer.player.userName}}</td>
                                 <td v-if="game.gamePlayers.length == 1">{{game.gamePlayers[0].player.userName}}</td>
                                 <td v-if="game.gamePlayers.length == 1">Waiting for opponent</td>
+
+                                <td v-if="game.gamePlayers.length == 2 && (game.gamePlayers[0].player.userName != users && game.gamePlayers[1].player.userName != users)">
+                                    <button class="btn">Full</button>
+                                </td>
+                                <!-- <td v-if="game.gamePlayers.length == 2 && game.gamePlayers[1].player.userName != users">
+                                    <button class="btn">Full</button>
+                                </td> -->
+                                <td v-if="game.gamePlayers.length == 2 && (game.gamePlayers[0].player.userName == users || game.gamePlayers[1].player.userName == users)">
+                                    <button class="btn">Enter</button>
+                                </td>
+                                <!-- <td v-if="game.gamePlayers.length == 2 && game.gamePlayers[1].player.userName == users">
+                                    <button class="btn">Enter</button>
+                                </td> -->
+                                <td v-if="game.gamePlayers.length == 1 && game.gamePlayers[0].player.userName != users">
+                                    <button class="btn">Join</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
