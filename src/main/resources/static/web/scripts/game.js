@@ -27,6 +27,7 @@ let shipGrid = new Vue({
                     this.getGPlayers(this.data);
                     this.getSalvoes(this.data);
                     this.getEnemySalvoes(this.data);
+                    // this.youShallNotPass(this.data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -90,7 +91,12 @@ let shipGrid = new Vue({
          }
         }
       }
-    }
+    },
+    // youShallNotPass: function(){
+    //     console.log(this.data.youShallNotPass)
+    // },
+
+
     },
     created: function () {
         this.getId();

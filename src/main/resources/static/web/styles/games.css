@@ -14,7 +14,7 @@ body {
 }
 
 .btn {
-    margin-top: 30px;
+    width: 60px;
     color: brown;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -41,6 +41,12 @@ h5 {
     margin-bottom: 40px;
 }
 
+#logOutbtn{
+    width: 80px;
+    margin-top: 30px;
+    background-color: whitesmoke;
+}
+
 /* Tables */
 table {
     text-align: center;
@@ -55,10 +61,21 @@ table {
 
 thead {
     font-weight: bold;
+    padding-top: 15px;
+    padding-bottom:15px;
 }
 
 td {
     padding: 15px;
+}
+
+tr:hover{
+    background-color:rgb(189, 188, 188);
+}
+
+p{
+    margin: 0px;
+    color:brown;
 }
 
 .flexTables {

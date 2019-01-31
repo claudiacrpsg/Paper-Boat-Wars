@@ -92,19 +92,22 @@ public class SalvoController {
 
 
     @RequestMapping("/game_view/{gameId}")
-    private Map<String, Object> gameViewDTO (@PathVariable Long gameId){
+    private Map<String, Object> gameViewDTO (@PathVariable Long gameId, Authentication authentication) {
         GamePlayer gamePlayer = gamePlayerRep.getOne(gameId);
-
-        Map<String, Object> dto = new LinkedHashMap<String, Object>();
-        dto.put("GameId", gamePlayer.getGame().getId());
-        dto.put("created", gamePlayer.getGame().getDate());
-        dto.put("GamePlayers", gamePlayer.getGame().getGamePlayers().stream().map(gamePlayer1 -> gamePlayerDTO(gamePlayer1)).collect(Collectors.toList()));
-        dto.put("Ships", gamePlayer.getShips().stream().map(ship -> shipsDTO(ship)).collect(Collectors.toList()));
-        dto.put("Salvoes", gamePlayer.getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
-        if(oppGamePlayer(gamePlayer) != null) {
-            dto.put("EnemySalvoes", oppGamePlayer(gamePlayer).getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
+        if (gamePlayer.getPlayer().getId() == isAuth(authentication).getId()) {
+            Map<String, Object> dto = new LinkedHashMap<String, Object>();
+            dto.put("GameId", gamePlayer.getGame().getId());
+            dto.put("created", gamePlayer.getGame().getDate());
+            dto.put("GamePlayers", gamePlayer.getGame().getGamePlayers().stream().map(gamePlayer1 -> gamePlayerDTO(gamePlayer1)).collect(Collectors.toList()));
+            dto.put("Ships", gamePlayer.getShips().stream().map(ship -> shipsDTO(ship)).collect(Collectors.toList()));
+            dto.put("Salvoes", gamePlayer.getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
+            if (oppGamePlayer(gamePlayer) != null) {
+                dto.put("EnemySalvoes", oppGamePlayer(gamePlayer).getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
+            }
+            return dto;
+        } else {
+            return playerInfo("YOU SHALL NOT PASS!", HttpStatus.FORBIDDEN);
         }
-        return dto;
     }
 
     //access enemy information

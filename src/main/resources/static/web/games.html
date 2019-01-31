@@ -25,7 +25,7 @@
                     <h5>Hello {{users}}!</h5>
                 </div>
                 <div v-on:click="logOut()">
-                    <button type="button" class="btn">Log Out</button>
+                    <button type="button" id="logOutbtn" class="btn">Log Out</button>
                 </div>
             </div>
             <!-- The tables -->
@@ -50,21 +50,17 @@
                                 <td v-for="gamePlayer in game.gamePlayers" v-if="game.gamePlayers.length == 2">{{gamePlayer.player.userName}}</td>
                                 <td v-if="game.gamePlayers.length == 1">{{game.gamePlayers[0].player.userName}}</td>
                                 <td v-if="game.gamePlayers.length == 1">Waiting for opponent</td>
-
                                 <td v-if="game.gamePlayers.length == 2 && (game.gamePlayers[0].player.userName != users && game.gamePlayers[1].player.userName != users)">
-                                    <button class="btn">Full</button>
+                                    <p>Full</p>
                                 </td>
-                                <!-- <td v-if="game.gamePlayers.length == 2 && game.gamePlayers[1].player.userName != users">
-                                    <button class="btn">Full</button>
-                                </td> -->
                                 <td v-if="game.gamePlayers.length == 2 && (game.gamePlayers[0].player.userName == users || game.gamePlayers[1].player.userName == users)">
-                                    <button class="btn">Enter</button>
+                                    <a v-bind:href="'game.html?gp='+getGameView(game.gamePlayers)"><button class="btn">Enter</button></a>
                                 </td>
-                                <!-- <td v-if="game.gamePlayers.length == 2 && game.gamePlayers[1].player.userName == users">
+                                <td v-if="game.gamePlayers.length == 1 && (game.gamePlayers[0].player.userName != users)">
+                                   <a v-bind:href="'game.html?gp='+game.gamePlayers[0].id"><button class="btn">Join</button></a>
+                                </td>
+                                <td v-if="game.gamePlayers.length == 1 && (game.gamePlayers[0].player.userName == users)">
                                     <button class="btn">Enter</button>
-                                </td> -->
-                                <td v-if="game.gamePlayers.length == 1 && game.gamePlayers[0].player.userName != users">
-                                    <button class="btn">Join</button>
                                 </td>
                             </tr>
                         </tbody>
