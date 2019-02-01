@@ -433,9 +433,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("api/players").permitAll()
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/styles/index.css").permitAll()
-                .antMatchers("/web/scripts/index.js").permitAll()
-                //to be closed when game finishes
-        .antMatchers("/h2-console/**").permitAll();
+                .antMatchers("/web/scripts/index.js").permitAll();
+        //.antMatchers("/h2-console/**").permitAll();
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("pwd")

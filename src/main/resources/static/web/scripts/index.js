@@ -64,17 +64,18 @@ function signUp() {
         logIn();
     }).catch(function (ex) {
         console.log('parsing failed', ex)
+        alert("Error, please try again")
     });
 }
 
 
-function register(){
+function register() {
     var welcome = document.getElementById("welcome");
     var login = document.getElementById("login");
     var question = document.getElementById("question");
-var titleSignup = document.getElementById("titleSignup");
-var username = document.getElementById("username");
-var buttonSignup = document.getElementById("buttonSignup");
+    var titleSignup = document.getElementById("titleSignup");
+    var username = document.getElementById("username");
+    var buttonSignup = document.getElementById("buttonSignup");
 
     welcome.style.display = "none";
     login.style.display = "none";
@@ -82,4 +83,4 @@ var buttonSignup = document.getElementById("buttonSignup");
     titleSignup.style.display = "block";
     username.style.display = "block";
     buttonSignup.style.display = "block";
- }
+}
