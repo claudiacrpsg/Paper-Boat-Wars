@@ -13,7 +13,7 @@ h1 {
   color: brown;
   font-size: 80px;
   text-shadow: 2px 2px 4px#cec9c9;
-  margin-bottom: -20px;
+  margin-bottom: 30px;
 }
 
 /* Flex for Title and Registration Box */
@@ -32,7 +32,7 @@ h1 {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 600px;
+  width: 400px;
 }
 
 .registration input {
@@ -44,10 +44,10 @@ h1 {
 
 .flexReg {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .logIn {
@@ -174,4 +174,25 @@ h1 {
     left: -20%;
     top: 75%;
   }
+}
+
+#titleSignup{
+  display: none;
+}
+
+
+#username{
+  display: none;
+}
+
+#buttonSignup{
+  display: none;
+}
+
+#question button{
+ background-color: whitesmoke;
+}
+
+#question button:hover{
+  color: brown;
 }

@@ -23,36 +23,34 @@
                 <!-- Log In -->
                 <div>
                     <div class="logIn">
-                        <div>
+                        <div id="welcome">
                             <h4>Welcome!</h4>
+                        </div>
+                        <div id="titleSignup">
+                            <h4>Need to Sign Up?</h4>
+                        </div>
+                        <div id="username">
+                            <input id="userName" type="text" name="userName" placeholder=" Your Username" required>
                         </div>
                         <div>
                             <input id="email" type="email" name="email" placeholder=" Your Email" required>
                         </div>
                         <div>
-                            <input id="pwd" type="password" name="password" placeholder=" Your Password" required>
+                            <input id="password" type="password" name="password" placeholder=" Your Password" required>
                         </div>
                     </div>
-                    <div>
-                        <button type="button" class="btn" onclick="logIn()">Log In</button>
+                    <div id="login">
+                        <div>
+                            <button type="button" class="btn" onclick="logIn()">Log In</button>
+                        </div>
+                        <div id="question">
+                            <button onclick="register()" class="btn">Need to Sign Up?</button>
+                        </div>
                     </div>
-                </div>
-                <!-- Sign Up -->
-                <div>
-                    <div class="signup">
-                        <h4>Need to Sign Up?</h4>
-                    </div>
-                    <div>
-                        <input id="userName" type="text" name="userName" placeholder=" Your Username" required>
-                    </div>
-                    <div>
-                        <input id="email2" type="email" name="signUpEmail" placeholder=" Your Email" required>
-                    </div>
-                    <div>
-                        <input id="password" type="password" name="signUpPassword" placeholder=" Your Password"
-                            required>
-                    </div>
-                    <div>
+                
+                
+                
+                    <div id="buttonSignup">
                         <button type="button" class="btn" onclick="signUp()">Sign Up</button>
                     </div>
                 </div>

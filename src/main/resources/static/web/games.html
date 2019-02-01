@@ -32,7 +32,14 @@
             <div class="flexTables">
                 <!-- Table 1 - Games -->
                 <div class="table1">
-                    <h2>Games</h2>
+                    <div class="createNew">
+                        <div class="center">
+                            <h2>Games</h2>
+                        </div>
+                        <div v-on:click="createNewGame()" class="right">
+                           <button id="newGame" class="btn">New Game</button>
+                        </div>
+                    </div>
                     <table>
                         <thead class="thead">
                             <tr>
@@ -57,7 +64,8 @@
                                     <a v-bind:href="'game.html?gp='+getGameView(game.gamePlayers)"><button class="btn">Enter</button></a>
                                 </td>
                                 <td v-if="game.gamePlayers.length == 1 && (game.gamePlayers[0].player.userName != users)">
-                                   <a v-bind:href="'game.html?gp='+game.gamePlayers[0].id"><button class="btn">Join</button></a>
+                                    <!-- <a v-bind:href="'game.html?gp='+game.gamePlayers[0].id"><button class="btn">Join</button></a> -->
+                                    <button class="btn">Join</button>
                                 </td>
                                 <td v-if="game.gamePlayers.length == 1 && (game.gamePlayers[0].player.userName == users)">
                                     <button class="btn">Enter</button>

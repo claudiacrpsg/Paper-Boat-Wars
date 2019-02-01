@@ -1,7 +1,7 @@
 function logIn() {
     var ourData = {
         email: document.getElementById("email").value,
-        pwd: document.getElementById("pwd").value,
+        pwd: document.getElementById("password").value,
     }
     fetch("/api/login", {
             credentials: 'include',
@@ -35,9 +35,13 @@ function logIn() {
     }
 }
 
+
+
 function redirect() {
     location.replace("http://localhost:8080/web/games.html")
 }
+
+
 
 function signUp() {
 
@@ -50,15 +54,32 @@ function signUp() {
         },
         body: JSON.stringify({
             userName: document.getElementById("userName").value,
-            email: document.getElementById("email2").value,
+            email: document.getElementById("email").value,
             password: document.getElementById("password").value,
         })
     }).then(function (response) {
         return response.json();
     }).then(function (json) {
         console.log('parsed json', json)
-
+        logIn();
     }).catch(function (ex) {
         console.log('parsing failed', ex)
     });
 }
+
+
+function register(){
+    var welcome = document.getElementById("welcome");
+    var login = document.getElementById("login");
+    var question = document.getElementById("question");
+var titleSignup = document.getElementById("titleSignup");
+var username = document.getElementById("username");
+var buttonSignup = document.getElementById("buttonSignup");
+
+    welcome.style.display = "none";
+    login.style.display = "none";
+    question.style.display = "none";
+    titleSignup.style.display = "block";
+    username.style.display = "block";
+    buttonSignup.style.display = "block";
+ }

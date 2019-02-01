@@ -31,8 +31,8 @@ public class Game{
 
     public Game(){
         this.date = new Date();
-        this.id = id;
-    }
+        }
+
     public Date getDate() {
         return date;
     }

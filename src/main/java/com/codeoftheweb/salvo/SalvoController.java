@@ -116,7 +116,6 @@ public class SalvoController {
 
     }
 
-
     @RequestMapping("/ships")
     public Map<String, Object> shipsDTO(Ship ship) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
@@ -166,10 +165,10 @@ public class SalvoController {
     @RequestMapping(path = "/players", method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestBody Player player) {
         if (player.getUserName().isEmpty() || player.getEmail().isEmpty() || player.getPassword().isEmpty()) {
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Missing data", HttpStatus.BAD_REQUEST);
         }
         if (repository.findByEmail(player.getEmail()) !=  null) {
-            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Email already in use", HttpStatus.CONFLICT);
         }
         repository.save(new Player(player.getUserName(), player.getEmail(),player.getPassword()));
         return new ResponseEntity<>(playerInfo("userName", player.getUserName()), HttpStatus.CREATED);
@@ -181,12 +180,28 @@ public class SalvoController {
         return map;
     }
 
-
     private boolean isGuest(Authentication authentication) {
         return authentication == null || authentication instanceof AnonymousAuthenticationToken;
     }
-
     private Player isAuth (Authentication authentication){
         return repository.findByEmail(authentication.getName());
     }
+
+
+    @RequestMapping(path = "/games", method = RequestMethod.POST)
+    public ResponseEntity<Object> newGame(Authentication authentication) {
+        Game game = new Game();
+        GamePlayer gamePlayer = new GamePlayer(isAuth(authentication), game);
+        game.addGamePlayer(gamePlayer);
+        gameRep.save(game);
+        gamePlayerRep.save(gamePlayer);
+        return new ResponseEntity<>(newGame("gpId", gamePlayer.getId()), HttpStatus.CREATED);
+    }
+
+    private Map<String, Object> newGame(String key, Object value) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(key, value);
+        return map;
+    }
+
 }

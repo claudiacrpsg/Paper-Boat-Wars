@@ -433,7 +433,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("api/players").permitAll()
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/styles/index.css").permitAll()
-                .antMatchers("/web/scripts/index.js").permitAll();
+                .antMatchers("/web/scripts/index.js").permitAll()
+                //to be closed when game finishes
+        .antMatchers("/h2-console/**").permitAll();
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("pwd")
@@ -450,6 +452,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
         // if logout is successful, just send a success response
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+        //allows access to h2
+        http.headers().frameOptions().disable();
     }
     private void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

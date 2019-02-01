@@ -11,6 +11,7 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+    margin-bottom: 40px;
 }
 
 .btn {
@@ -31,7 +32,6 @@ h1 {
 /* Games and Leaderboard Titles */
 h2 {
     font-size: 24px;
-    text-align: center;
     text-shadow: 2px 2px 4px#cec9c9;
     color: brown;
 }
@@ -44,7 +44,30 @@ h5 {
 #logOutbtn{
     width: 80px;
     margin-top: 30px;
-    background-color: whitesmoke;
+    color: whitesmoke;
+    background-color: brown; 
+}
+
+.createNew{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.center{
+    align-self: center;
+}
+
+.right{
+    align-self: flex-end;
+}
+
+#newGame{
+    align-self: flex-end;
+    width: 80px;
+    color: whitesmoke;
+    background-color: brown; 
 }
 
 /* Tables */
