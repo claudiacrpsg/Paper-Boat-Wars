@@ -195,13 +195,27 @@ public class SalvoController {
         game.addGamePlayer(gamePlayer);
         gameRep.save(game);
         gamePlayerRep.save(gamePlayer);
-        return new ResponseEntity<>(newGame("gpId", gamePlayer.getId()), HttpStatus.CREATED);
+        return new ResponseEntity<>(playerInfo("gpId", gamePlayer.getId()), HttpStatus.CREATED);
     }
 
-    private Map<String, Object> newGame(String key, Object value) {
-        Map<String, Object> map = new HashMap<>();
-        map.put(key, value);
-        return map;
+    @RequestMapping(path = "/game/{nn}/players", method = RequestMethod.POST)
+    public ResponseEntity<Object> joinGame(Authentication authentication, @PathVariable Long nn) {
+    if(isAuth(authentication) == null){
+        return new ResponseEntity<>("You are not Logged In", HttpStatus.FORBIDDEN);
+    }
+    if(gameRep.getOne(nn) == null){
+        return new ResponseEntity<>("No game", HttpStatus.FORBIDDEN);
+    }
+    if(gameRep.getOne(nn).getGamePlayers().size() == 2){
+        return new ResponseEntity<>("Game if full little lady!", HttpStatus.FORBIDDEN);
     }
 
+    Game currentGame = gameRep.getOne(nn);
+    Player currentPlayer = isAuth(authentication);
+
+    GamePlayer joiningGamePlayer = new GamePlayer(currentPlayer, currentGame);
+    gamePlayerRep.save(joiningGamePlayer);
+
+    return new ResponseEntity<>(playerInfo("gamePlayerID", joiningGamePlayer.getId()),HttpStatus.CREATED);
+    }
 }

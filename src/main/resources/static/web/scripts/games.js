@@ -6,7 +6,8 @@ let tables = new Vue({
       player1: "",
       player2: "",
       users: "",
-      gpID: ""
+      gpID: "",
+      gp0: "",
    },
    methods: {
       getGames: function () {
@@ -69,10 +70,26 @@ let tables = new Vue({
                method: 'POST',
             }).then(function (response) {
                console.log(response)
-               // window.location.reload(); for automatical reload
                return response.json();
+            }).then(function (data) {
+               console.log(data)
+               this.gp0 = data.gpId;
+               window.location = "game.html?gp=" + this.gp0;
+               console.log(this.gp0)
+               return data.gpId;
             });
       },
+
+      joinGame: function(gameId){
+         fetch('/api/game/'+gameId+'/players', {
+            method: 'POST',
+         }).then(function (response) {
+            console.log(response)
+            return response.json();
+         }).then(function (data) {
+          window.location = "game.html?gp=" + data.gamePlayerID;
+         });
+      }
    },
    created() {
       this.getGames();
