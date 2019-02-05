@@ -6,13 +6,18 @@ body {
 }
 
 /* Title */
-h1 {
-  font-size: 50px;
-  text-align: center;
-  margin-top: 20px;
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#back{
+  margin-top: 30px;
   margin-bottom: 30px;
-  color: brown;
-  text-shadow: 2px 2px 4px#cec9c9;
+  color: whitesmoke;
+  background-color: brown;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Game Players Names */
@@ -38,8 +43,8 @@ table {
 }
 
 td {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   margin: 0px;
   padding: 0px;
   text-align: center;

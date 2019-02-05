@@ -69,12 +69,13 @@ function signUp() {
 }
 
 
-function register() {
+function register1() {
     var welcome = document.getElementById("welcome");
     var login = document.getElementById("login");
     var question = document.getElementById("question");
     var titleSignup = document.getElementById("titleSignup");
     var username = document.getElementById("username");
+    var question2 = document.getElementById("question2");
     var buttonSignup = document.getElementById("buttonSignup");
 
     welcome.style.display = "none";
@@ -83,4 +84,23 @@ function register() {
     titleSignup.style.display = "block";
     username.style.display = "block";
     buttonSignup.style.display = "block";
+    question2.style.display = "block";
+}
+
+function register2() {
+    var welcome = document.getElementById("welcome");
+    var login = document.getElementById("login");
+    var question = document.getElementById("question");
+    var titleSignup = document.getElementById("titleSignup");
+    var username = document.getElementById("username");
+    var question2 = document.getElementById("question2");
+    var buttonSignup = document.getElementById("buttonSignup");
+
+    welcome.style.display = "block";
+    login.style.display = "block";
+    question.style.display = "block";
+    titleSignup.style.display = "none";
+    username.style.display = "none";
+    buttonSignup.style.display = "none";
+    question2.style.display = "none";
 }

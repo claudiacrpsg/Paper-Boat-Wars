@@ -20,6 +20,11 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.btn:hover{
+    background-color: brown;
+    color: whitesmoke;
+}
+
 h1 {
     font-size: 50px;
     text-align: center;
@@ -80,6 +85,11 @@ table {
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 50px;
+    width: 500px;
+}
+
+#leaderboard{
+    margin-bottom: 18px;
 }
 
 thead {

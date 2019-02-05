@@ -32,8 +32,8 @@ h1 {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 350px;
-  height: 270px;
+  width: 400px;
+  height: 300px;
 }
 
 .registration input {
@@ -48,7 +48,41 @@ h1 {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  /* margin-top: 50px; */
+}
+
+#titleSignup,
+#username,
+#buttonSignup,
+#question2 {
+  display: none;
+}
+
+#question button {
+  background-color: whitesmoke;
+  margin-top: 10px;
+}
+
+#question button:hover {
+  color: brown;
+}
+
+#login {
+  margin-top: 20px;
+}
+
+#btnlogin:hover,
+#btnsignup:hover {
+  background-color: brown;
+  color: whitesmoke;
+}
+
+#question2 button {
+  background-color: whitesmoke;
+  margin-top: 5px;
+}
+
+#question2 button:hover {
+  color: brown;
 }
 
 /* Ocean Animation */
@@ -62,10 +96,10 @@ h1 {
 .ocean::before {
   background-color: #35859D;
   width: 150%;
-  height: 150px;
+  height: 100px;
   position: absolute;
   content: '';
-  top: 90px;
+  top: 65px;
   left: -20%;
   border-radius: 100%;
   animation: waves 10s ease infinite;
@@ -74,7 +108,7 @@ h1 {
 
 .ocean::before {
   background-color: whitesmoke;
-  top: 100px;
+  top: 75px;
   animation-delay: 5s;
   opacity: 0.5;
 }
@@ -170,29 +204,4 @@ h1 {
     left: -20%;
     top: 75%;
   }
-}
-
-#titleSignup{
-  display: none;
-}
-
-
-#username{
-  display: none;
-}
-
-#buttonSignup{
-  display: none;
-}
-
-#question button{
- background-color: whitesmoke;
-}
-
-#question button:hover{
-  color: brown;
-}
-
-#login{
-  margin-top: 20px;
 }

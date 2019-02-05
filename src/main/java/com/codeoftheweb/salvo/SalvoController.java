@@ -8,10 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -28,6 +25,8 @@ public class SalvoController {
     private GamePlayerRepository gamePlayerRep;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ShipRepository shipRepository;
 
 
 //    @RequestMapping("/players")
@@ -209,13 +208,40 @@ public class SalvoController {
     if(gameRep.getOne(nn).getGamePlayers().size() == 2){
         return new ResponseEntity<>("Game if full little lady!", HttpStatus.FORBIDDEN);
     }
-
     Game currentGame = gameRep.getOne(nn);
     Player currentPlayer = isAuth(authentication);
-
     GamePlayer joiningGamePlayer = new GamePlayer(currentPlayer, currentGame);
     gamePlayerRep.save(joiningGamePlayer);
-
     return new ResponseEntity<>(playerInfo("gamePlayerID", joiningGamePlayer.getId()),HttpStatus.CREATED);
     }
+
+
+
+    @RequestMapping(path = "/games/players/{gamePlayerId}/ships", method = RequestMethod.POST)
+    public ResponseEntity<Object> placeShips(Authentication authentication, @PathVariable Long gamePlayerId, @RequestBody Set<Ship> ships) {
+        GamePlayer gamePlayer = gamePlayerRep.getOne(gamePlayerId);
+        if(isAuth(authentication) == null){
+            return new ResponseEntity<>(playerInfo("Error","You are not Logged In"), HttpStatus.UNAUTHORIZED);
+        }
+        if(gamePlayer == null){
+            return new ResponseEntity<>(playerInfo("Error","No game player found"), HttpStatus.UNAUTHORIZED);
+        }
+        if(isAuth(authentication).getId() != gamePlayer.getPlayer().getId()){
+            return new ResponseEntity<>(playerInfo("Error","This is wrong peeps"), HttpStatus.UNAUTHORIZED);
+        }
+        if(gamePlayer.getShips().size() != 0){
+            return new ResponseEntity<>(playerInfo("Error",""), HttpStatus.FORBIDDEN);
+        }
+        if(ships.size() != 5){
+            return new ResponseEntity<>(playerInfo("Error","Place 5 ships little lady"), HttpStatus.FORBIDDEN);
+        }
+        for(Ship ship : ships){
+            gamePlayer.addShip(ship);
+            shipRepository.save(ship);
+        }
+        return new ResponseEntity<>(playerInfo("gamePlayerID", gamePlayer.getId()),HttpStatus.CREATED);
+    }
+
+
+
 }
