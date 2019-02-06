@@ -31,7 +31,7 @@ public class Ship {
     }
 
     public Ship (String type, List<String> location) {
-        this.id = id;
+
         this.type = type;
         this.location = location;
         this.gamePlayer = gamePlayer;

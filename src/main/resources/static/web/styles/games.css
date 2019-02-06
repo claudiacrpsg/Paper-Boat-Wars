@@ -26,10 +26,11 @@ body {
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 60px;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;
+    margin-left: -70px;
     color: brown;
     text-shadow: 2px 2px 4px#cec9c9;
 }
@@ -39,11 +40,14 @@ h2 {
     font-size: 24px;
     text-shadow: 2px 2px 4px#cec9c9;
     color: brown;
+    margin-left: 15px;
 }
 
 h5 {
+    font-size: 22px;
     text-align: center;
     margin-bottom: 40px;
+    margin-left: -70px;
 }
 
 #logOutbtn{
@@ -82,7 +86,7 @@ table {
     font-size: 14px;
     color: #2E2E2E;
     background-color: whitesmoke;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 50px;
     width: 500px;
