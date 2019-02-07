@@ -45,6 +45,10 @@ let shipGrid = new Vue({
             for (j = 0; j < ships.length; j++) {
                 for (i = 0; i < data.Ships[j].Location.length; i++) {
                     document.getElementById(data.Ships[j].Location[i]).className += "ships";
+                    // var img = document.createElement("img");
+                    // img.className = "boatShip";
+                    // img.src = "styles/yellowBoat.png";
+                    // document.getElementById(data.Ships[j].Location[i]).append(img);
                 }
             }
         },
@@ -75,7 +79,7 @@ let shipGrid = new Vue({
                     } else {
                         var img = document.createElement("img");
                         img.className = "water";
-                        img.src = "styles/water.gif";
+                        img.src = "styles/water-drop.gif";
                         document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
                     }
                 }
@@ -93,7 +97,7 @@ let shipGrid = new Vue({
                     } else {
                         var img = document.createElement("img");
                         img.className = "water";
-                        img.src = "styles/water.gif";
+                        img.src = "styles/water-drop.gif";
                         document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).append(img);
                     }
                 }
@@ -114,47 +118,18 @@ let shipGrid = new Vue({
                 return response.json();
             }).then(function (json) {
                 console.log('parsed json', json)
-                location.reload();
-               
+               location.reload();
             }).catch(function (ex) {
                 console.log('parsing failed', ex)
                 alert("Error")
             });
         },
-
-
     },
     created: function () {
         this.getId();
 
     }
 });
-
-
-
-
-
-
-
-
-
-
-// function allowDrop(ev) {
-//     ev.preventDefault();
-//   }
-  
-//   function drag(ev) {
-//     ev.dataTransfer.setData("text", ev.target.id);
-//   }
-  
-//   function drop(ev) {
-//     ev.preventDefault();
-//     var data = ev.dataTransfer.getData("text");
-//     ev.target.appendChild(document.getElementById(data));
-//   }
-
-
-
 
 
 

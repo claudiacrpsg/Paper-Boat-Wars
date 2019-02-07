@@ -24,60 +24,62 @@
             <!-- The tables -->
             <div class="flexTables">
                 <!-- Table 1 - You -->
-                    <div>
-                        <h2>{{gamePlayer1}} (you)</h2>
-                        <table id="grid">
-                            <tr v-for="letter,i in letters">
-                                <td v-for="number,j in numbers" v-bind:id="letter + number">
-                                    <span v-if="i==0 || j ==0">
-                                        {{letter + number}}
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                <div>
+                    <h2>{{gamePlayer1}} (you)</h2>
+                    <table id="grid">
+                        <tr v-for="letter,i in letters">
+                            <td v-for="number,j in numbers" v-bind:id="letter + number">
+                                <span v-if="i==0 || j ==0">
+                                    {{letter + number}}
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="boats">
-                        <div class="row">
-                         
-                            <img src="styles/yellowBoat.png" class="yellowBoat">
-                            <img src="styles/yellowBoat.png" class="yellowBoat">
-                        
+                    <div>
+                        <!-- <div class="row" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="styles/yellowBoat.png" class="yellowBoat" draggable="true" ondragstart="drag(event)"
+                                id="drag1">
                         </div>
-                        <div class="row">
-                            <img src="styles/orangeBoat.png" class="orangeBoat">
-                            <img src="styles/orangeBoat.png" class="orangeBoat">
-                            <img src="styles/orangeBoat.png" class="orangeBoat">
-                        </div>
-                        <div class="row">
-                            <img src="styles/redBoat.png" class="redBoat">
-                            <img src="styles/redBoat.png" class="redBoat">
-                            <img src="styles/redBoat.png" class="redBoat">
-                        </div>
-                        <div class="row">
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                        </div>
-                        <div class="row">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                        </div>
-                        <button class="btn" @click="getShips()">Send Paper Boats</button>
+                        <div class="row" id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="styles/yellowBoat2.png" class="yellowBoat2" draggable="true" ondragstart="drag(event)"
+                                id="drag3">
+                        </div> -->
                     </div>
+                    <!-- <div class="row">
+                              
+                            <img src="styles/orangeBoat.png" class="orangeBoat">
+                            <img src="styles/orangeBoat.png" class="orangeBoat">
+                            <img src="styles/orangeBoat.png" class="orangeBoat">
+                        </div>
+                        <div class="row">
+                              
+                            <img src="styles/redBoat.png" class="redBoat">
+                            <img src="styles/redBoat.png" class="redBoat">
+                            <img src="styles/redBoat.png" class="redBoat">
+                        </div>
+                        <div class="row">
+                             
+                            <img src="styles/blueBoat.png" class="blueBoat">
+                            <img src="styles/blueBoat.png" class="blueBoat">
+                            <img src="styles/blueBoat.png" class="blueBoat">
+                            <img src="styles/blueBoat.png" class="blueBoat">
+                        </div>
+                        <div class="row">
+                              
+                            <img src="styles/greenBoat.png" class="greenBoat">
+                            <img src="styles/greenBoat.png" class="greenBoat">
+                            <img src="styles/greenBoat.png" class="greenBoat">
+                            <img src="styles/greenBoat.png" class="greenBoat">
+                            <img src="styles/greenBoat.png" class="greenBoat">
+                        </div> -->
+                    <button class="btn" @click="getShips()">Send Paper Boats</button>
+                </div>
                 <!-- Table 2 - Opponent -->
                 <div>
                     <h2> {{gamePlayer2}}</h2>
-                    <div  class="flexBoats">
-                        <!-- <div class="column">
-                            <img src="styles/fire.gif" class="fire">
-                            <img src="styles/fire.gif" class="fire">
-                            <img src="styles/fire.gif" class="fire">
-                            <button id="fire" class="btn" @click="getShips()">Fire!</button>
-                        </div> -->
+                    <div class="flexBoats">
                         <div>
                             <table id="grid2">
                                 <tr v-for="letter,i in letters">
