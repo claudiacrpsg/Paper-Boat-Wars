@@ -8,6 +8,8 @@
         crossorigin="anonymous">
     <link rel="shortcut icon" type="image/x-icon" href="../web/styles/redBoat.png">
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="styles/game.css">
 </head>
 
@@ -17,6 +19,9 @@
         <div class="container">
             <!-- Main title -->
             <div class="title">
+                <div>
+                    <img src="../web/styles/orangeBoat.png">
+                </div>
                 <div>
                     <a href="/web/games.html"><button type="button" id="back" class="btn">Back to Games</button></a>
                 </div>
@@ -28,53 +33,29 @@
                     <h2>{{gamePlayer1}} (you)</h2>
                     <table id="grid">
                         <tr v-for="letter,i in letters">
-                            <td v-for="number,j in numbers" v-bind:id="letter + number">
+                            <td v-for="number,j in numbers" v-if="i==0 || j ==0" v-bind:id="letter + number">
                                 <span v-if="i==0 || j ==0">
                                     {{letter + number}}
                                 </span>
+                            </td>
+                            <td v-else v-bind:id="letter + number" @mouseover="shipHover()"
+                            @mouseleave="shipClean()" @click="storeShipLocation()">
+
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="boats">
-                    <div>
-                        <!-- <div class="row" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="styles/yellowBoat.png" class="yellowBoat" draggable="true" ondragstart="drag(event)"
-                                id="drag1">
-                        </div>
-                        <div class="row" id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="styles/yellowBoat2.png" class="yellowBoat2" draggable="true" ondragstart="drag(event)"
-                                id="drag3">
-                        </div> -->
+                    <div class="row">
+                        <button class="btn direction" type="button" @click=""><i class="fas fa-arrows-alt-h"></i></button>
+                        <button class="btn direction" type="button" @click=""><i class="fas fa-arrows-alt-v"></i></button>
                     </div>
-                    <!-- <div class="row">
-                              
-                            <img src="styles/orangeBoat.png" class="orangeBoat">
-                            <img src="styles/orangeBoat.png" class="orangeBoat">
-                            <img src="styles/orangeBoat.png" class="orangeBoat">
-                        </div>
-                        <div class="row">
-                              
-                            <img src="styles/redBoat.png" class="redBoat">
-                            <img src="styles/redBoat.png" class="redBoat">
-                            <img src="styles/redBoat.png" class="redBoat">
-                        </div>
-                        <div class="row">
-                             
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                            <img src="styles/blueBoat.png" class="blueBoat">
-                        </div>
-                        <div class="row">
-                              
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                            <img src="styles/greenBoat.png" class="greenBoat">
-                        </div> -->
-                    <button class="btn" @click="getShips()">Send Paper Boats</button>
+                    <button id="yellowBtn" type="button" class="btn" @click="getShipLengthYellow()">Yellow Paper Boats</button>
+                    <button id="orangeBtn" type="button" class="btn" @click="getShipLengthOrange()">Orange Paper Boats</button>
+                    <button id="redBtn" type="button" class="btn" @click="getShipLengthRed()">Red Paper Boats</button>
+                    <button id="blueBtn" type="button" class="btn" @click="getShipLengthBlue()">Blue Paper Boats</button>
+                    <button id="greenBtn" type="button" class="btn" @click="getShipLengthGreen()">Green Paper Boats</button>
+                    <button id="sendBoats" class="btn" @click="getShips()">Send Paper Boats</button>
                 </div>
                 <!-- Table 2 - Opponent -->
                 <div>

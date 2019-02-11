@@ -9,10 +9,36 @@ body {
 .title {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+img {
+  align-self: flex-start;
+  width: 150px;
+  animation: swing 3s infinite ease;
+  text-align: center;
+  transform-origin: bottom center;
+  border-radius: 100%;
+  padding: 20px;
+  padding-top: 0px;
+}
+
+@keyframes swing {
+  0% {
+      transform: rotate(-5deg);
+  }
+
+  50% {
+      transform: rotate(5deg);
+  }
+
+  100% {
+      transform: rotate(-5deg);
+  }
 }
 
 #back {
+  align-self: flex-end;
   margin-top: 30px;
   margin-bottom: 30px;
   color: whitesmoke;
@@ -51,6 +77,8 @@ td {
   border: 1px solid #2E2E2E;
 
 }
+
+
 
 .flexTables {
   display: flex;
@@ -91,18 +119,10 @@ td {
   align-self: center;
 }
 
-.yellowBoat {
-  /* position: absolute; */
+/* .yellowBoat {
   width: 35px;
   height: 40px;
 }
-
-.yellowBoat2 {
-  /* position: absolute; */
-  width: 70px;
-  height: 30px;
-}
-
 
 .orangeBoat {
   width: 35px;
@@ -118,7 +138,7 @@ td {
 .greenBoat {
   width: 35px;
   height: 40px;
-}
+} */
 
 
 
@@ -127,13 +147,12 @@ td {
   flex-direction: column;
   padding: 20px;
   margin-top: 30px;
-  /* background-color: whitesmoke;
-  height: 300px; */
 }
 
 .btn:hover {
   background-color: brown;
   color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .row {
@@ -143,19 +162,13 @@ td {
 
 }
 
-.column {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-
 .btn {
   margin-top: 20px;
   padding-left: 0px;
   padding-right: 0px;
-  width: 120px;
+  width: 130px;
   height: 38px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #fire {
@@ -163,13 +176,38 @@ td {
   height: 38px;
 }
 
-/* td .ships{
-  background-image: url("styles/yellowBoat.png")
-} */
 
-.boatShip{
- 
-  width: 35px;
-  height: 40px;
-/* display: none; */
+#sendBoats{
+  background-color: brown;
+  color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.direction{
+  width: 30px;
+}
+
+.yellow, .yellow2{
+  background-image: url("yellowBoat.png");
+  background-size: contain;
+}
+
+.orange, .orange2{
+  background-image: url("orangeBoat.png");
+  background-size: contain;
+}
+
+.red, .red2{
+  background-image: url("redBoat.png");
+  background-size: contain;
+}
+
+.blue, .blue2{
+  background-image: url("blueBoat.png");
+  background-size: contain;
+}
+
+.green, .green2{
+  background-image: url("greenBoat.png");
+  background-size: contain;
 }

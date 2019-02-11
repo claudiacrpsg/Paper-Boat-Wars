@@ -14,7 +14,7 @@ function logIn() {
         .then(function (data) {
             console.log('Request success: ', data);
             if (data.status == 200) {
-                alert("You are Logged In!")
+                // alert("You are Logged In!")
                 redirect();
             } else {
                 alert("Error! Try again!")

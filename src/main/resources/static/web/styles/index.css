@@ -133,7 +133,7 @@ h1 {
   position: absolute;
   top: -20%;
   left: 50%;
-  animation: boat1 50s ease-in infinite;
+  animation: boat1 43s ease-in infinite;
 }
 
 @keyframes boat1 {
@@ -160,7 +160,7 @@ h1 {
   position: absolute;
   top: -20%;
   left: 50%;
-  animation: boat2 40s ease-in infinite;
+  animation: boat2 33s ease-in infinite;
 }
 
 @keyframes boat2 {
@@ -187,7 +187,7 @@ h1 {
   position: absolute;
   top: -20%;
   left: 50%;
-  animation: boat3 35s ease-in infinite;
+  animation: boat3 23s ease-in infinite;
 }
 
 @keyframes boat3 {
