@@ -38,17 +38,17 @@
                                     {{letter + number}}
                                 </span>
                             </td>
-                            <td v-else v-bind:id="letter + number" @mouseover="shipHover()"
-                            @mouseleave="shipClean()" @click="storeShipLocation()">
+                            <td v-else v-bind:id="letter + number" @mouseover="shipHover()" @mouseleave="shipClean()"
+                                @click="storeShipLocation()">
 
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="boats">
+                <div class="boats" v-if="data == ''|| data.Ships.length == 0">
                     <div class="row">
-                        <button class="btn direction" type="button"><i class="fas fa-arrows-alt-h"></i></button>
-                        <button class="btn direction" type="button"><i class="fas fa-arrows-alt-v"></i></button>
+                        <button @click="itsHorizontal()" class="btn direction" type="button"><i class="fas fa-arrows-alt-h"></i></button>
+                        <button @click="itsVertical()" class="btn direction" type="button"><i class="fas fa-arrows-alt-v"></i></button>
                     </div>
                     <button id="yellowBtn" type="button" class="btn" @click="getShipLengthYellow()">Yellow Paper Boats</button>
                     <button id="orangeBtn" type="button" class="btn" @click="getShipLengthOrange()">Orange Paper Boats</button>

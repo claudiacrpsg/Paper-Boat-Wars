@@ -7,13 +7,11 @@ body {
 
 /* Title */
 .title {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: block;
 }
 
 img {
-  align-self: flex-start;
+  float: left;
   width: 150px;
   animation: swing 3s infinite ease;
   text-align: center;
@@ -25,20 +23,21 @@ img {
 
 @keyframes swing {
   0% {
-      transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
 
   50% {
-      transform: rotate(5deg);
+    transform: rotate(5deg);
   }
 
   100% {
-      transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
 }
 
 #back {
-  align-self: flex-end;
+  margin-right: 30px;
+  float: right;
   margin-top: 30px;
   margin-bottom: 30px;
   color: whitesmoke;
@@ -64,7 +63,6 @@ table {
   margin-top: 10px;
   border-collapse: collapse;
   margin-bottom: 100px;
-
   background-color: whitesmoke;
 }
 
@@ -78,6 +76,10 @@ td {
 
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
 
 
 .flexTables {
@@ -85,6 +87,7 @@ td {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
+  margin-top: 20px;
 }
 
 
@@ -98,7 +101,7 @@ td {
 }
 
 .ships {
-  background-color:brown;
+  background-color: brown;
 
 }
 
@@ -119,29 +122,6 @@ td {
   align-self: center;
 }
 
-/* .yellowBoat {
-  width: 35px;
-  height: 40px;
-}
-
-.orangeBoat {
-  width: 35px;
-  height: 40px;
-}
-
-.redBoat,
-.blueBoat {
-  width: 35px;
-  height: 40px;
-}
-
-.greenBoat {
-  width: 35px;
-  height: 40px;
-} */
-
-
-
 .boats {
   display: flex;
   flex-direction: column;
@@ -159,7 +139,7 @@ td {
   padding: 10px;
   display: flex;
   flex-direction: row;
-
+  justify-content: center;
 }
 
 .btn {
@@ -177,37 +157,49 @@ td {
 }
 
 
-#sendBoats{
+#sendBoats {
   background-color: brown;
   color: whitesmoke;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.direction{
+.direction {
   width: 30px;
+  margin-right: 10px;
+  margin-top: -1px;
 }
 
-.yellow, .yellow2{
+.yellow,
+.yellow2 {
   background-image: url("yellowBoat.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
-.orange, .orange2{
+.orange,
+.orange2 {
   background-image: url("orangeBoat.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
-.red, .red2{
+.red,
+.red2 {
   background-image: url("redBoat.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
-.blue, .blue2{
+.blue,
+.blue2 {
   background-image: url("blueBoat.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
-.green, .green2{
+.green,
+.green2 {
   background-image: url("greenBoat.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }

@@ -9,28 +9,30 @@ let shipGrid = new Vue({
         gamePlayer2: "",
         shipLocation: [{
                 type: "battleship",
-                location: ["A1", "B1", "C1", "D1"]
+                location: []
             },
             {
                 type: "submarine",
-                location: ["B4", "B5", "B6"]
+                location: []
             },
             {
                 type: "patrol-boat",
-                location: ["H5", "I5"]
+                location: []
             },
             {
                 type: "carrier",
-                location: ["F1", "F2", "F3", "F4", "F5"]
+                location: []
             },
             {
                 type: "destroyer",
-                location: ["B10", "C10", "D10", "E10"]
+                location: []
             },
         ],
         shipLength: "",
-        hover: "false",
-        emptyGreen: [],
+        hover: false,
+        overlap: false,
+        vertical: false
+       
     },
     methods: {
         getId: function () {
@@ -47,6 +49,7 @@ let shipGrid = new Vue({
                 .then((json) => {
                     this.data = json;
                     console.log(this.data);
+
                     this.colorThisSquare(this.data);
                     this.getGPlayers(this.data);
                     this.getSalvoes(this.data);
@@ -58,9 +61,24 @@ let shipGrid = new Vue({
         },
         colorThisSquare: function (data) {
             var ships = data.Ships;
+            console.log(ships)
             for (j = 0; j < ships.length; j++) {
                 for (i = 0; i < data.Ships[j].Location.length; i++) {
-                    document.getElementById(data.Ships[j].Location[i]).className += "ships";
+                    if (data.Ships[j].Location.length == 1) {
+                        document.getElementById(data.Ships[j].Location[i]).classList.add("yellow");
+                    }
+                    if (data.Ships[j].Location.length == 2) {
+                        document.getElementById(data.Ships[j].Location[i]).classList.add("orange");
+                    }
+                    if (data.Ships[j].Location.length == 3) {
+                        document.getElementById(data.Ships[j].Location[i]).classList.add("red");
+                    }
+                    if (data.Ships[j].Location.length == 4) {
+                        document.getElementById(data.Ships[j].Location[i]).classList.add("blue");
+                    }
+                    if (data.Ships[j].Location.length == 5) {
+                        document.getElementById(data.Ships[j].Location[i]).classList.add("green");
+                    }
                 }
             }
         },
@@ -126,7 +144,7 @@ let shipGrid = new Vue({
             }).then(function (response) {
                 return response.json();
             }).then(function (json) {
-                console.log('parsed json', json)
+                // alert(json.Error);
                 location.reload();
             }).catch(function (ex) {
                 console.log('parsing failed', ex)
@@ -158,49 +176,146 @@ let shipGrid = new Vue({
             this.hover = true;
             console.log(this.shipLength)
         },
+        itsVertical: function () {
+            this.vertical = true;
+        },
+        itsHorizontal: function () {
+            this.vertical = false;
+        },
         shipHover: function () {
-            if (this.hover) {
+            this.overlap = false;
+            if (this.hover == true) {
                 var letter = event.target.id.substr(0, 1);
                 var number = event.target.id.substr(1, 2);
-                for (var i = 0; i < this.shipLength; i++) {
-                    var id = letter + (Number(number) + i);
-                    if (this.shipLength == 1) {
-                        document.getElementById(id).classList.add("yellow");
+                if (this.vertical == false) {
+                    for (var i = 0; i < this.shipLength; i++) {
+                        var id = letter + (Number(number) + i);
+                        if (!document.getElementById(id)) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("yellow2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("orange2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("red2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("blue2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("green2")) {
+                            this.overlap = true;
+                        }
                     }
-                    if (this.shipLength == 2) {
-                        document.getElementById(id).classList.add("orange");
+                    if (!this.overlap) {
+                        for (var i = 0; i < this.shipLength; i++) {
+                            var id = letter + (Number(number) + i);
+                            if (this.shipLength == 1) {
+                                document.getElementById(id).classList.add("yellow");
+                            }
+                            if (this.shipLength == 2) {
+                                document.getElementById(id).classList.add("orange");
+                            }
+                            if (this.shipLength == 3) {
+                                document.getElementById(id).classList.add("red");
+                            }
+                            if (this.shipLength == 4) {
+                                document.getElementById(id).classList.add("blue");
+                            }
+                            if (this.shipLength == 5) {
+                                document.getElementById(id).classList.add("green");
+                            }
+                        }
                     }
-                    if (this.shipLength == 3) {
-                        document.getElementById(id).classList.add("red");
+                }
+                if (this.vertical == true) {
+                    for (var i = 0; i < this.shipLength; i++) {
+                        var id = this.letters[this.letters.indexOf(letter) + i] + number;
+                        if (!document.getElementById(id)) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("yellow2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("orange2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("red2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("blue2")) {
+                            this.overlap = true;
+                        }
+                        if (document.getElementById(id).classList.contains("green2")) {
+                            this.overlap = true;
+                        }
                     }
-                    if (this.shipLength == 4) {
-                        document.getElementById(id).classList.add("blue");
+                    if (!this.overlap) {
+                        for (var i = 0; i < this.shipLength; i++) {
+                            var id = this.letters[this.letters.indexOf(letter) + i] + number;
+                            if (this.shipLength == 1) {
+                                document.getElementById(id).classList.add("yellow");
+                            }
+                            if (this.shipLength == 2) {
+                                document.getElementById(id).classList.add("orange");
+                            }
+                            if (this.shipLength == 3) {
+                                document.getElementById(id).classList.add("red");
+                            }
+                            if (this.shipLength == 4) {
+                                document.getElementById(id).classList.add("blue");
+                            }
+                            if (this.shipLength == 5) {
+                                document.getElementById(id).classList.add("green");
+                            }
+                        }
                     }
-                    if (this.shipLength == 5) {
-                        document.getElementById(id).classList.add("green"); 
-                    }
-                } 
+                }
             }
         },
         shipClean: function () {
             var letter = event.target.id.substr(0, 1);
             var number = event.target.id.substr(1, 2);
-            for (var i = 0; i < this.shipLength; i++) {
-                var id = letter + (Number(number) + i);
-                if (this.shipLength == 1) {
-                    document.getElementById(id).classList.remove("yellow");
+            if (this.vertical == false) {
+                for (var i = 0; i < this.shipLength; i++) {
+                    var id = letter + (Number(number) + i);
+                    if (this.shipLength == 1) {
+                        document.getElementById(id).classList.remove("yellow");
+                    }
+                    if (this.shipLength == 2) {
+                        document.getElementById(id).classList.remove("orange");
+                    }
+                    if (this.shipLength == 3) {
+                        document.getElementById(id).classList.remove("red");
+                    }
+                    if (this.shipLength == 4) {
+                        document.getElementById(id).classList.remove("blue");
+                    }
+                    if (this.shipLength == 5) {
+                        document.getElementById(id).classList.remove("green");
+                    }
                 }
-                if (this.shipLength == 2) {
-                    document.getElementById(id).classList.remove("orange");
-                }
-                if (this.shipLength == 3) {
-                    document.getElementById(id).classList.remove("red");
-                }
-                if (this.shipLength == 4) {
-                    document.getElementById(id).classList.remove("blue");
-                }
-                if (this.shipLength == 5) {
-                    document.getElementById(id).classList.remove("green");
+            }
+            if (this.vertical == true) {
+                for (var i = 0; i < this.shipLength; i++) {
+                    var id = this.letters[this.letters.indexOf(letter) + i] + number;
+                    if (this.shipLength == 1) {
+                        document.getElementById(id).classList.remove("yellow");
+                    }
+                    if (this.shipLength == 2) {
+                        document.getElementById(id).classList.remove("orange");
+                    }
+                    if (this.shipLength == 3) {
+                        document.getElementById(id).classList.remove("red");
+                    }
+                    if (this.shipLength == 4) {
+                        document.getElementById(id).classList.remove("blue");
+                    }
+                    if (this.shipLength == 5) {
+                        document.getElementById(id).classList.remove("green");
+                    }
                 }
             }
         },
@@ -208,38 +323,97 @@ let shipGrid = new Vue({
             if (this.hover) {
                 var letter = event.target.id.substr(0, 1);
                 var number = event.target.id.substr(1, 2);
+                if (this.vertical == false) {
+                    for (var i = 0; i < this.shipLength; i++) {
+                        var id = letter + (Number(number) + i);
+                        if (!this.overlap) {
+                            if (this.shipLength == 1) {
+                                document.getElementById(id).classList.add("yellow2");
+                                var btn = document.getElementById("yellowBtn");
+                                btn.style.display = "none";
+                                this.shipLocation[0].location.push(id);
+                            }
+                            if (this.shipLength == 2) {
+                                document.getElementById(id).classList.add("orange2");
+                                var btn = document.getElementById("orangeBtn");
+                                btn.style.display = "none";
+                                this.shipLocation[1].location.push(id);
+                            }
+                            if (this.shipLength == 3) {
+                                document.getElementById(id).classList.add("red2");
+                                var btn = document.getElementById("redBtn");
+                                btn.style.display = "none";
+                                this.shipLocation[2].location.push(id);
+                            }
+                            if (this.shipLength == 4) {
+                                document.getElementById(id).classList.add("blue2");
+                                var btn = document.getElementById("blueBtn");
+                                btn.style.display = "none";
+                                this.shipLocation[3].location.push(id);
+                            }
+                            if (this.shipLength == 5) {
+                                document.getElementById(id).classList.add("green2");
+                                var btn = document.getElementById("greenBtn");
+                                btn.style.display = "none";
+                                this.shipLocation[4].location.push(id);
+                            }
+                        }
+                    }
+                    this.hover = false;
+                }
+            }
+            if (this.vertical == true) {
                 for (var i = 0; i < this.shipLength; i++) {
-                    var id = letter + (Number(number) + i);
-                    if (this.shipLength == 1) {
-                        document.getElementById(id).classList.add("yellow2");
-                        var btn = document.getElementById("yellowBtn");
-                        btn.style.display = "none";
+                    var id = this.letters[this.letters.indexOf(letter) + i] + number;
+                    if (!this.overlap) {
+                        if (this.shipLength == 1) {
+                            document.getElementById(id).classList.add("yellow2");
+                            var btn = document.getElementById("yellowBtn");
+                            btn.style.display = "none";
+                            this.shipLocation[0].location.push(id);
+                        }
+                        if (this.shipLength == 2) {
+                            document.getElementById(id).classList.add("orange2");
+                            var btn = document.getElementById("orangeBtn");
+                            btn.style.display = "none";
+                            this.shipLocation[1].location.push(id);
+                        }
+                        if (this.shipLength == 3) {
+                            document.getElementById(id).classList.add("red2");
+                            var btn = document.getElementById("redBtn");
+                            btn.style.display = "none";
+                            this.shipLocation[2].location.push(id);
+                        }
+                        if (this.shipLength == 4) {
+                            document.getElementById(id).classList.add("blue2");
+                            var btn = document.getElementById("blueBtn");
+                            btn.style.display = "none";
+                            this.shipLocation[3].location.push(id);
+                        }
+                        if (this.shipLength == 5) {
+                            document.getElementById(id).classList.add("green2");
+                            var btn = document.getElementById("greenBtn");
+                            btn.style.display = "none";
+                            this.shipLocation[4].location.push(id);
+                        }
                     }
-                    if (this.shipLength == 2) {
-                        document.getElementById(id).classList.add("orange2");
-                        var btn = document.getElementById("orangeBtn");
-                        btn.style.display = "none";
-                    }
-                    if (this.shipLength == 3) {
-                        document.getElementById(id).classList.add("red2");
-                        var btn = document.getElementById("redBtn");
-                        btn.style.display = "none";
-                    }
-                    if (this.shipLength == 4) {
-                        document.getElementById(id).classList.add("blue2");
-                        var btn = document.getElementById("blueBtn");
-                        btn.style.display = "none";
-                    }
-                    if (this.shipLength == 5) {
-                        document.getElementById(id).classList.add("green2");
-                        var btn = document.getElementById("greenBtn");
-                        btn.style.display = "none";
                 }
                 this.hover = false;
             }
-        }
+        },
+        // hideThemBtns: function(){
+        //     var btn1 = document.getElementById("yellowBtn");
+        //     btn1.style.display = "none";
+        //     var btn2 = document.getElementById("orangeBtn");
+        //     btn2.style.display = "none";
+        //     var btn3 = document.getElementById("redBtn");
+        //     btn3.style.display = "none";
+        //     var btn4 = document.getElementById("blueBtn");
+        //     btn4.style.display = "none";
+        //     var btn5 = document.getElementById("greenBtn");
+        //     btn5.style.display = "none";
+        // },
     },
-},
     created: function () {
         this.getId();
     }
