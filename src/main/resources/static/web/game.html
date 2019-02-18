@@ -20,7 +20,7 @@
             <!-- Main title -->
             <div class="title">
                 <div>
-                    <img src="../web/styles/orangeBoat.png">
+                    <img id="movingBoat" src="../web/styles/orangeBoat.png">
                 </div>
                 <div>
                     <a href="/web/games.html"><button type="button" id="back" class="btn">Back to Games</button></a>
@@ -45,19 +45,29 @@
                         </tr>
                     </table>
                 </div>
-                <div class="boats" v-if="data == ''|| data.Ships.length == 0">
-                    <div class="row">
-                        <button @click="itsHorizontal()" class="btn direction" type="button"><i class="fas fa-arrows-alt-h"></i></button>
-                        <button @click="itsVertical()" class="btn direction" type="button"><i class="fas fa-arrows-alt-v"></i></button>
+                <div>
+                    <div class="boats" v-if="showButtons">
+                        <div class="row">
+                            <button @click="itsHorizontal()" class="btn direction" type="button"><i class="fas fa-arrows-alt-h"></i></button>
+                            <button @click="itsVertical()" class="btn direction" type="button"><i class="fas fa-arrows-alt-v"></i></button>
+                        </div>
+                        <button id="yellowBtn" type="button" class="btn" @click="getShipLengthYellow()">Yellow Paper
+                            Boats</button>
+                        <button id="orangeBtn" type="button" class="btn" @click="getShipLengthOrange()">Orange Paper
+                            Boats</button>
+                        <button id="redBtn" type="button" class="btn" @click="getShipLengthRed()">Red Paper Boats</button>
+                        <button id="blueBtn" type="button" class="btn" @click="getShipLengthBlue()">Blue Paper Boats</button>
+                        <button id="greenBtn" type="button" class="btn" @click="getShipLengthGreen()">Green Paper Boats</button>
+                        <button v-if="allTheShips" id="sendBoats" class="btn" @click="getShips()">Send Paper Boats</button>
                     </div>
-                    <button id="yellowBtn" type="button" class="btn" @click="getShipLengthYellow()">Yellow Paper Boats</button>
-                    <button id="orangeBtn" type="button" class="btn" @click="getShipLengthOrange()">Orange Paper Boats</button>
-                    <button id="redBtn" type="button" class="btn" @click="getShipLengthRed()">Red Paper Boats</button>
-                    <button id="blueBtn" type="button" class="btn" @click="getShipLengthBlue()">Blue Paper Boats</button>
-                    <button id="greenBtn" type="button" class="btn" @click="getShipLengthGreen()">Green Paper Boats</button>
-                    <button id="sendBoats" class="btn" @click="getShips()">Send Paper Boats</button>
+                    <!-- Table 2 - Opponent -->
+                    <div class="boats" id="salvos" v-else>
+                        <img id="fire1" src="styles/match.png">
+                        <img id="fire2" src="styles/match.png">
+                        <img id="fire3" src="styles/match.png">
+                    </div>
                 </div>
-                <!-- Table 2 - Opponent -->
+
                 <div>
                     <h2> {{gamePlayer2}}</h2>
                     <div class="flexBoats">

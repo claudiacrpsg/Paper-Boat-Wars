@@ -31,8 +31,15 @@ let shipGrid = new Vue({
         shipLength: "",
         hover: false,
         overlap: false,
-        vertical: false
+        vertical: false,
+        showButtons: false,
        
+    },
+    computed: {
+        allTheShips: function(){
+            let placedShips = this.shipLocation.filter(ship => ship.location.length > 0);
+            return placedShips.length == 5;
+        }
     },
     methods: {
         getId: function () {
@@ -50,7 +57,7 @@ let shipGrid = new Vue({
                     this.data = json;
                     console.log(this.data);
 
-                    this.colorThisSquare(this.data);
+                    this.positionShips(this.data);
                     this.getGPlayers(this.data);
                     this.getSalvoes(this.data);
                     this.getEnemySalvoes(this.data);
@@ -59,8 +66,13 @@ let shipGrid = new Vue({
                     console.log(err);
                 })
         },
-        colorThisSquare: function (data) {
+        positionShips: function (data) {
             var ships = data.Ships;
+            if(data.Ships.length == 0){
+                this.showButtons = true;
+            }else{
+                this.showButtons = false;
+            }
             console.log(ships)
             for (j = 0; j < ships.length; j++) {
                 for (i = 0; i < data.Ships[j].Location.length; i++) {
@@ -144,7 +156,7 @@ let shipGrid = new Vue({
             }).then(function (response) {
                 return response.json();
             }).then(function (json) {
-                // alert(json.Error);
+                console.log(json)
                 location.reload();
             }).catch(function (ex) {
                 console.log('parsing failed', ex)
@@ -401,18 +413,6 @@ let shipGrid = new Vue({
                 this.hover = false;
             }
         },
-        // hideThemBtns: function(){
-        //     var btn1 = document.getElementById("yellowBtn");
-        //     btn1.style.display = "none";
-        //     var btn2 = document.getElementById("orangeBtn");
-        //     btn2.style.display = "none";
-        //     var btn3 = document.getElementById("redBtn");
-        //     btn3.style.display = "none";
-        //     var btn4 = document.getElementById("blueBtn");
-        //     btn4.style.display = "none";
-        //     var btn5 = document.getElementById("greenBtn");
-        //     btn5.style.display = "none";
-        // },
     },
     created: function () {
         this.getId();
