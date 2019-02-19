@@ -60,7 +60,7 @@ table {
   color: #2E2E2E;
   text-shadow: none;
   border-collapse: collapse;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
   background-color: whitesmoke;
 }
 
@@ -193,12 +193,17 @@ td {
 .green2 {
   background-image: url("greenBoat.png");
   background-size: contain;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
 }
 
 #fire1, #fire2, #fire3{
-  width: 30px;
+  width: 40px;
   border: none;
 
 }
 
+.salvoMatch, .salvoMatch2{
+  background-image: url("match.png"); 
+  background-size: contain;
+  background-repeat: no-repeat;
+}

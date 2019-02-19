@@ -28,18 +28,33 @@ let shipGrid = new Vue({
                 location: []
             },
         ],
+        salvoLocation: [{
+                location: []
+            },
+            {
+                location: []
+            },
+            {
+                location: []
+            },
+        ],
         shipLength: "",
         hover: false,
         overlap: false,
         vertical: false,
         showButtons: false,
-       
+        salvoHover: false,
+        fire: "",
     },
     computed: {
-        allTheShips: function(){
+        allTheShips: function () {
             let placedShips = this.shipLocation.filter(ship => ship.location.length > 0);
             return placedShips.length == 5;
-        }
+        },
+        // allTheSalvos: function(){
+        //     let placedSalvos = this.salvoLocation.filter(salvo =>salvo.location.length > 0);
+        //     return placedSalvos.length == 3;
+        // }
     },
     methods: {
         getId: function () {
@@ -68,9 +83,9 @@ let shipGrid = new Vue({
         },
         positionShips: function (data) {
             var ships = data.Ships;
-            if(data.Ships.length == 0){
+            if (data.Ships.length == 0) {
                 this.showButtons = true;
-            }else{
+            } else {
                 this.showButtons = false;
             }
             console.log(ships)
@@ -166,27 +181,22 @@ let shipGrid = new Vue({
         getShipLengthYellow: function () {
             this.shipLength = 1;
             this.hover = true;
-            console.log(this.shipLength)
         },
         getShipLengthOrange: function () {
             this.shipLength = 2;
             this.hover = true;
-            console.log(this.shipLength)
         },
         getShipLengthRed: function () {
             this.shipLength = 3;
             this.hover = true;
-            console.log(this.shipLength)
         },
         getShipLengthBlue: function () {
             this.shipLength = 4;
             this.hover = true;
-            console.log(this.shipLength)
         },
         getShipLengthGreen: function () {
             this.shipLength = 5;
             this.hover = true;
-            console.log(this.shipLength)
         },
         itsVertical: function () {
             this.vertical = true;
@@ -413,6 +423,100 @@ let shipGrid = new Vue({
                 this.hover = false;
             }
         },
+
+        postSalvos: function () {
+            fetch('/api/games/players/' + shipGrid.gp + '/salvos', {
+                credentials: 'include',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    shipGrid.salvoLocation
+                )
+            }).then(function (response) {
+                return response.json();
+            }).then(function (json) {
+                console.log(json)
+                location.reload();
+            }).catch(function (ex) {
+                console.log('parsing failed', ex)
+                alert("Error")
+            });
+        },
+
+
+
+        callSalvos1: function () {
+            this.salvoHover = true;
+            this.fire = "one";
+        },
+        callSalvos2: function () {
+            this.salvoHover = true;
+            this.fire = "two";
+        },
+        callSalvos3: function () {
+            this.salvoHover = true;
+            this.fire = "three";
+        },
+
+        makeSalvosHover: function () {
+            this.overlap = false;
+            if (this.salvoHover == true) {
+                var id = event.target.id;
+                if (document.getElementById(id).classList.contains("salvoMatch2")) {
+                    this.overlap = true;
+                }
+                if (!document.getElementById(id)) {
+                    this.overlap = true;
+                }
+                if (!this.overlap) {
+                    document.getElementById(id).classList.add("salvoMatch");
+                }
+            }
+        },
+
+        salvoClean: function () {
+            var id = event.target.id;
+            if (this.salvoHover == true) {
+                document.getElementById(id).classList.remove("salvoMatch")
+            }
+        },
+
+        salvoStay: function () {
+            var id = event.target.id;
+            if (this.salvoHover == true) {
+                document.getElementById(id).classList.add("salvoMatch2");
+                if (!this.overlap) {
+                    if (this.fire == "one") {
+                        var fire1 = document.getElementById("fire1");
+                        fire1.style.display = "none";
+                        this.salvoLocation[0].location.push(id);
+                        console.log(this.salvoLocation[0].location)
+                    }
+                    if (this.fire == "two") {
+                        var fire2 = document.getElementById("fire2");
+                        fire2.style.display = "none";
+                        this.salvoLocation[1].location.push(id);
+                        console.log(this.salvoLocation[1].location)
+                    }
+                    if (this.fire == "three") {
+                        var fire3 = document.getElementById("fire3");
+                        fire3.style.display = "none";
+                        this.salvoLocation[2].location.push(id);
+                        console.log(this.salvoLocation[2].location)
+                    }
+                }
+            }
+            this.salvoHover = false;
+
+        },
+
+     
+
+
+
+
     },
     created: function () {
         this.getId();

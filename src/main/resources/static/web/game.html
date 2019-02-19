@@ -62,9 +62,10 @@
                     </div>
                     <!-- Table 2 - Opponent -->
                     <div class="boats" id="salvos" v-else>
-                        <img id="fire1" src="styles/match.png">
-                        <img id="fire2" src="styles/match.png">
-                        <img id="fire3" src="styles/match.png">
+                        <img  id="fire1" src="styles/match.png" @click="callSalvos1()">
+                        <img id="fire2" src="styles/match.png" @click="callSalvos2()">
+                        <img  id="fire3" src="styles/match.png" @click="callSalvos3()">
+                        <button  @click="postSalvos()" id="sendSalvos" class="btn">Send Matches</button>
                     </div>
                 </div>
 
@@ -74,10 +75,13 @@
                         <div>
                             <table id="grid2">
                                 <tr v-for="letter,i in letters">
-                                    <td v-for="number,j in numbers" v-bind:id="letter + number + 's'">
+                                    <td v-for="number,j in numbers" v-if="i==0 || j ==0" v-bind:id="letter + number + 's'">
                                         <span v-if="i==0 || j ==0">
                                             {{letter + number}}
                                         </span>
+                                    </td>
+                                    <td v-else v-bind:id="letter + number + 's'" @mouseover="makeSalvosHover()"
+                                        @mouseleave="salvoClean()" @click="salvoStay()">
                                     </td>
                                 </tr>
                             </table>
