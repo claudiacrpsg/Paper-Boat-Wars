@@ -51,10 +51,11 @@ let shipGrid = new Vue({
             let placedShips = this.shipLocation.filter(ship => ship.location.length > 0);
             return placedShips.length == 5;
         },
-        // allTheSalvos: function(){
-        //     let placedSalvos = this.salvoLocation.filter(salvo =>salvo.location.length > 0);
+        // allTheSalvos: function () {
+        //     let placedSalvos = this.salvoLocation.filter(salvo => salvo.location.length > 0);
         //     return placedSalvos.length == 3;
-        // }
+        // },
+      
     },
     methods: {
         getId: function () {
@@ -465,9 +466,6 @@ let shipGrid = new Vue({
             if (this.salvoHover == true) {
                 var id = event.target.id;
                 if (document.getElementById(id).classList.contains("salvoMatch2")) {
-                    this.overlap = true;
-                }
-                if (!document.getElementById(id)) {
                     this.overlap = true;
                 }
                 if (!this.overlap) {
