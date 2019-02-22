@@ -28,16 +28,7 @@ let shipGrid = new Vue({
                 location: []
             },
         ],
-        salvoLocation: [{
-                location: []
-            },
-            {
-                location: []
-            },
-            {
-                location: []
-            },
-        ],
+        salvoLocation: [],
         shipLength: "",
         hover: false,
         overlap: false,
@@ -51,6 +42,8 @@ let shipGrid = new Vue({
             let placedShips = this.shipLocation.filter(ship => ship.location.length > 0);
             return placedShips.length == 5;
         },
+
+        
         // allTheSalvos: function () {
         //     let placedSalvos = this.salvoLocation.filter(salvo => salvo.location.length > 0);
         //     return placedSalvos.length == 3;
@@ -384,7 +377,7 @@ let shipGrid = new Vue({
                     }
                     this.hover = false;
                 }
-            }
+            
             if (this.vertical == true) {
                 for (var i = 0; i < this.shipLength; i++) {
                     var id = this.letters[this.letters.indexOf(letter) + i] + number;
@@ -423,23 +416,24 @@ let shipGrid = new Vue({
                 }
                 this.hover = false;
             }
+        }
         },
 
         postSalvos: function () {
-            fetch('/api/games/players/' + shipGrid.gp + '/salvos', {
+            fetch('/api/games/players/' + this.gp + '/salvos', {
                 credentials: 'include',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(
-                    shipGrid.salvoLocation
+                    {"salvoLocation": this.salvoLocation}
                 )
             }).then(function (response) {
                 return response.json();
             }).then(function (json) {
                 console.log(json)
-                location.reload();
+             
             }).catch(function (ex) {
                 console.log('parsing failed', ex)
                 alert("Error")
@@ -489,32 +483,26 @@ let shipGrid = new Vue({
                     if (this.fire == "one") {
                         var fire1 = document.getElementById("fire1");
                         fire1.style.display = "none";
-                        this.salvoLocation[0].location.push(id);
-                        console.log(this.salvoLocation[0].location)
+                        this.salvoLocation.push(id);
+                        console.log(this.salvoLocation)
                     }
                     if (this.fire == "two") {
                         var fire2 = document.getElementById("fire2");
                         fire2.style.display = "none";
-                        this.salvoLocation[1].location.push(id);
-                        console.log(this.salvoLocation[1].location)
+                        this.salvoLocation.push(id);
+                        console.log(this.salvoLocation)
                     }
                     if (this.fire == "three") {
                         var fire3 = document.getElementById("fire3");
                         fire3.style.display = "none";
-                        this.salvoLocation[2].location.push(id);
-                        console.log(this.salvoLocation[2].location)
+                        this.salvoLocation.push(id);
+                        console.log(this.salvoLocation)
                     }
                 }
             }
             this.salvoHover = false;
 
         },
-
-     
-
-
-
-
     },
     created: function () {
         this.getId();

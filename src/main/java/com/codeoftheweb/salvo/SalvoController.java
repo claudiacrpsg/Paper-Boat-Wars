@@ -246,7 +246,7 @@ public class SalvoController {
 
 
     @RequestMapping(path = "/games/players/{gamePlayerId}/salvos", method = RequestMethod.POST)
-    public ResponseEntity<Object> placeSalvos(Authentication authentication, @PathVariable Long gamePlayerId, @RequestBody Set<Salvo> salvos) {
+    public ResponseEntity<Object> placeSalvos(Authentication authentication, @PathVariable Long gamePlayerId, @RequestBody Salvo salvo) {
         GamePlayer gamePlayer = gamePlayerRep.getOne(gamePlayerId);
         if(isAuth(authentication) == null){
             return new ResponseEntity<>(playerInfo("Error","You are not Logged In"), HttpStatus.UNAUTHORIZED);
@@ -257,14 +257,11 @@ public class SalvoController {
         if(isAuth(authentication).getId() != gamePlayer.getPlayer().getId()){
             return new ResponseEntity<>(playerInfo("Error","This is wrong peeps"), HttpStatus.UNAUTHORIZED);
         }
-        if(salvos.size() != 3){
-            return new ResponseEntity<>(playerInfo("Error","Shoot 3 salvos little lady"), HttpStatus.FORBIDDEN);
-        }
-
-        for(Salvo salvo : salvos){
+//        if(salvos.size() != 3) {
+//            return new ResponseEntity<>(playerInfo("Error", "Shoot 3 salvos little lady"), HttpStatus.FORBIDDEN);
+//        }
             gamePlayer.addSalvo(salvo);
             salvoRepository.save(salvo);
-        }
         return new ResponseEntity<>(playerInfo("gamePlayerID", gamePlayer.getId()),HttpStatus.CREATED);
     }
 

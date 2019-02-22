@@ -70,6 +70,7 @@ h1 {
   margin-top: 20px;
 }
 
+
 #btnlogin:hover,
 #btnsignup:hover {
   background-color: brown;
@@ -99,7 +100,7 @@ h1 {
   height: 100px;
   position: absolute;
   content: '';
-  top: 65px;
+  top: 85px;
   left: -20%;
   border-radius: 100%;
   animation: waves 10s ease infinite;
@@ -108,7 +109,7 @@ h1 {
 
 .ocean::before {
   background-color: whitesmoke;
-  top: 75px;
+  top: 95px;
   animation-delay: 5s;
   opacity: 0.5;
 }
@@ -139,16 +140,16 @@ h1 {
 @keyframes boat1 {
   0% {
     left: calc(100% + 30px);
-    top: 75%;
+    top: 78%;
   }
 
   50% {
-    top: 70%
+    top: 76%
   }
 
   100% {
     left: -20%;
-    top: 75%;
+    top: 78%;
   }
 }
 
@@ -166,16 +167,16 @@ h1 {
 @keyframes boat2 {
   0% {
     left: calc(100% + 30px);
-    top: 75%;
+    top: 78%;
   }
 
   50% {
-    top: 70%
+    top: 76%
   }
 
   100% {
     left: -20%;
-    top: 75%;
+    top: 78%;
   }
 }
 
@@ -193,15 +194,15 @@ h1 {
 @keyframes boat3 {
   0% {
     left: calc(100% + 30px);
-    top: 75%;
+    top: 78%;
   }
 
   50% {
-    top: 70%
+    top: 76%
   }
 
   100% {
     left: -20%;
-    top: 75%;
+    top: 78%;
   }
 }

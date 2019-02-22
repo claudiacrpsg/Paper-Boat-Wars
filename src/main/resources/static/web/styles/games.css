@@ -123,7 +123,7 @@ p{
 }
 
 /* Boat Swing Animation */
-img {
+#boatSwing {
     width: 150px;
     animation: swing 3s infinite ease;
     text-align: center;

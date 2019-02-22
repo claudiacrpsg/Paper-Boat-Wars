@@ -18,14 +18,14 @@
             <!-- Main title and Boat -->
             <div class="flexTitle">
                 <div>
-                    <img src="../web/styles/orangeBoat.png">
+                    <img id="boatSwing" src="../web/styles/orangeBoat.png">
                 </div>
                 <div>
                     <h1>Paper Boat Wars</h1>
-                    <h5>Hello {{users}}!</h5>
+                    <h5>Welcome {{users}}!</h5>
                 </div>
-                <div v-on:click="logOut()">
-                    <button type="button" id="logOutbtn" class="btn">Log Out</button>
+                <div>
+                    <button type="button" id="logOutbtn" class="btn" v-on:click="logOut()">Log Out</button>
                 </div>
             </div>
             <!-- The tables -->

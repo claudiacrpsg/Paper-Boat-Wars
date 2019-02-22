@@ -60,17 +60,17 @@ table {
   color: #2E2E2E;
   text-shadow: none;
   border-collapse: collapse;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   background-color: whitesmoke;
 }
 
 td {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   margin: 0px;
   padding: 0px;
   text-align: center;
-  border: 1px solid #2E2E2E;
+  border: 1px solid grey;
 
 }
 
@@ -84,10 +84,13 @@ td {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
-  margin-top: -40px;
+  justify-content: space-between;
+  margin-top: -20px;
 }
 
+/* #secondTable{
+  display: none;
+} */
 
 
 /* FIX THIS!!! */
@@ -124,7 +127,8 @@ td {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin-top: 30px;
+  margin-top: 50px;
+  border-radius: 2px;
 }
 
 .btn:hover {
@@ -160,6 +164,53 @@ td {
   margin-right: 10px;
   margin-top: -1px;
 }
+
+#yellowBtn img{
+  width: 38px;
+  transition: transform .2s;
+}
+
+#yellowBtn:hover{
+  transform: scale(1.1);
+}
+
+#orangeBtn img{
+  width: 38px;
+  transition: transform .2s;
+}
+
+#orangeBtn:hover{
+  transform: scale(1.1);
+}
+
+#redBtn img{
+  width: 38px;
+  transition: transform .2s;
+}
+
+#redBtn:hover{
+  transform: scale(1.1);
+}
+
+#blueBtn img{
+  width: 38px;
+  transition: transform .2s;
+}
+
+#blueBtn:hover{
+  transform: scale(1.1);
+}
+
+#greenBtn img{
+  width: 38px;
+  transition: transform .2s;
+}
+
+#greenBtn:hover{
+  transform: scale(1.1);
+}
+
+
 
 .yellow,
 .yellow2 {
