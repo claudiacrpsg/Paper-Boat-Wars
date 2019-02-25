@@ -28,7 +28,7 @@ let shipGrid = new Vue({
                 location: []
             },
         ],
-        salvoLocation: [],
+        salvoLocations: [],
         shipLength: "",
         hover: false,
         overlap: false,
@@ -119,16 +119,16 @@ let shipGrid = new Vue({
         getSalvoes: function (data) {
             for (i = 0; i < data.Salvoes.length; i++) {
                 for (j = 0; j < data.Salvoes[i].SalvoLocation.length; j++) {
-                    document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").innerHTML = this.data.Salvoes[i].Turn;
+                    document.getElementById(data.Salvoes[i].SalvoLocation[j]  + "s").innerHTML = this.data.Salvoes[i].Turn;
                     if (document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").classList.contains("ships")) {
                         var img = document.createElement("img");
                         img.className = "fire";
-                        img.src = "styles/fire.gif";
+                        img.src = "styles/flame.png";
                         document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
                     } else {
                         var img = document.createElement("img");
                         img.className = "water";
-                        img.src = "styles/water-drop.gif";
+                        img.src = "styles/sea.png";
                         document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
                     }
                 }
@@ -141,12 +141,12 @@ let shipGrid = new Vue({
                     if (document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("ships")) {
                         var img = document.createElement("img");
                         img.className = "fire";
-                        img.src = "styles/fire.gif";
+                        img.src = "styles/flame.png";
                         document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).append(img);
                     } else {
                         var img = document.createElement("img");
                         img.className = "water";
-                        img.src = "styles/water-drop.gif";
+                        img.src = "styles/sea.png";
                         document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).append(img);
                     }
                 }
@@ -427,13 +427,13 @@ let shipGrid = new Vue({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(
-                    {"salvoLocation": this.salvoLocation}
+                    {"salvoLocation": this.salvoLocations}
                 )
             }).then(function (response) {
                 return response.json();
             }).then(function (json) {
                 console.log(json)
-             
+                location.reload();
             }).catch(function (ex) {
                 console.log('parsing failed', ex)
                 alert("Error")
@@ -483,20 +483,20 @@ let shipGrid = new Vue({
                     if (this.fire == "one") {
                         var fire1 = document.getElementById("fire1");
                         fire1.style.display = "none";
-                        this.salvoLocation.push(id);
-                        console.log(this.salvoLocation)
+                        this.salvoLocations.push(id.substr(0,2));
+                        console.log(this.salvoLocations)
                     }
                     if (this.fire == "two") {
                         var fire2 = document.getElementById("fire2");
                         fire2.style.display = "none";
-                        this.salvoLocation.push(id);
-                        console.log(this.salvoLocation)
+                        this.salvoLocations.push(id.substr(0,2));
+                        console.log(this.salvoLocations)
                     }
                     if (this.fire == "three") {
                         var fire3 = document.getElementById("fire3");
                         fire3.style.display = "none";
-                        this.salvoLocation.push(id);
-                        console.log(this.salvoLocation)
+                        this.salvoLocations.push(id.substr(0,2));
+                        console.log(this.salvoLocations)
                     }
                 }
             }

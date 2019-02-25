@@ -117,7 +117,7 @@ public class SalvoController {
 
     }
 
-    @RequestMapping("/ships")
+
     public Map<String, Object> shipsDTO(Ship ship) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("ShipId", ship.getId());
@@ -127,7 +127,7 @@ public class SalvoController {
         return dto;
     }
 
-    @RequestMapping("/salvoes")
+
     public Map<String, Object> salvoesDTO(Salvo salvo) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("SalvoId", salvo.getId());
@@ -137,7 +137,7 @@ public class SalvoController {
         return dto;
     }
 
-    @RequestMapping("/scores")
+
     public Map<String, Object> scoresDTO(Score score) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("Score", score.getScore());

@@ -116,12 +116,12 @@ td {
   background-color: black;
 }
 
-/* .fire,
+.fire,
 .water {
   width: 30px;
   height: 30px;
   align-self: center;
-} */
+}
 
 .boats {
   display: flex;
