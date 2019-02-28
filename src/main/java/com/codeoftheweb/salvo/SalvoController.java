@@ -104,6 +104,7 @@ public class SalvoController {
             dto.put("Salvoes", gamePlayer.getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
             if (oppGamePlayer(gamePlayer) != null) {
                 dto.put("EnemySalvoes", oppGamePlayer(gamePlayer).getSalvoes().stream().map(salvo -> salvoesDTO(salvo)).collect(Collectors.toList()));
+                dto.put("oppShipLoc", hits(gamePlayer));
             }
             return dto;
         } else {
@@ -112,7 +113,8 @@ public class SalvoController {
     }
 
     //access enemy information
-    public GamePlayer oppGamePlayer(GamePlayer gamePlayer){
+    private
+    GamePlayer oppGamePlayer(GamePlayer gamePlayer){
         return gamePlayer.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayer.getId()).findAny().orElse(null);
 
     }
@@ -257,12 +259,28 @@ public class SalvoController {
         if(isAuth(authentication).getId() != gamePlayer.getPlayer().getId()){
             return new ResponseEntity<>(playerInfo("Error","This is wrong peeps"), HttpStatus.UNAUTHORIZED);
         }
-//        if(salvos.size() != 3) {
-//            return new ResponseEntity<>(playerInfo("Error", "Shoot 3 salvos little lady"), HttpStatus.FORBIDDEN);
-//        }
+            salvo.setTurn(gamePlayer.getSalvoes().size() +1);
             gamePlayer.addSalvo(salvo);
             salvoRepository.save(salvo);
         return new ResponseEntity<>(playerInfo("gamePlayerID", gamePlayer.getId()),HttpStatus.CREATED);
+    }
+
+    private Map<String, Object> hits (GamePlayer gamePlayer){
+        Map<String, Object> dto = new HashMap<>();
+        List<String> oppShips = oppGamePlayer(gamePlayer)
+        .getShips()
+        .stream()
+        .flatMap(ship -> ship.getLocation().stream())
+        .collect(toList());
+
+        for (Salvo salvo: gamePlayer.getSalvoes() ) {
+            for (String position : salvo.getSalvoLocation()) {
+               if(oppShips.contains(position)){
+                   dto.put(position, salvo.getTurn());
+               }
+            }
+        }
+        return dto;
     }
 
 }
