@@ -78,29 +78,6 @@ table {
   margin-top: -20px;
 }
 
-/* #secondTable{
-  display: none;
-} */
-
-
-/* FIX THIS!!! */
-/* .ships.enemySalvoes {
-  width: 30px;
-  height: 30px;
-  margin: 0px;
-  padding: 0px;
-} */
-
-/* .salvoes {
-  background-color: black;
-  width: 30px;
-  height: 30px;
-}
-
-.enemySalvoes {
-  background-color: black;
-} */
-
 .fire,
 .water {
   width:25px;
@@ -152,78 +129,28 @@ table {
   margin-top: -1px;
 }
 
-#yellowBtn img{
+#yellowBtn img, #orangeBtn img, #redBtn img, #blueBtn img, #greenBtn img{
   width: 36px;
   transition: transform .2s;
 }
 
-#yellowBtn:hover{
+#yellowBtn:hover, #orangeBtn:hover, #redBtn:hover, #blueBtn:hover, #greenBtn:hover{
   transform: scale(1.1);
 }
 
-#orangeBtn img{
+#match1, #match2, #match3, #match4{
   width: 36px;
   transition: transform .2s;
+  margin-left: 45px;
 }
 
-#orangeBtn:hover{
+#match2, #match3, #match4{
+  display: none;
+}
+
+#match1:hover, #match2:hover, #match3:hover, #match4:hover{
   transform: scale(1.1);
 }
-
-#redBtn img{
-  width: 36px;
-  transition: transform .2s;
-}
-
-#redBtn:hover{
-  transform: scale(1.1);
-}
-
-#blueBtn img{
-  width: 36px;
-  transition: transform .2s;
-}
-
-#blueBtn:hover{
-  transform: scale(1.1);
-}
-
-#greenBtn img{
-  width: 36px;
-  transition: transform .2s;
-}
-
-#greenBtn:hover{
-  transform: scale(1.1);
-}
-
-#match1 img{
-  width: 36px;
-  transition: transform .2s;
-}
-
-#match1:hover{
-  transform: scale(1.1);
-}
-
-#match2 img{
-  width: 36px;
-  transition: transform .2s;
-}
-
-#match2:hover{
-  transform: scale(1.1);
-}
-
-#match3 img{
-  width: 36px;
-  transition: transform .2s;
-}
-
-#match3:hover{
-  transform: scale(1.1);
-}
-
 
 .yellow,
 .yellow2 {
@@ -260,11 +187,11 @@ table {
   background-repeat: no-repeat;
 }
 
-#match1, #match2, #match3{
+/* #match1, #match2, #match3{
   width: 40px;
   border: none;
 
-}
+} */
 
 .salvoMatch, .salvoMatch2{
   background-image: url("match.png"); 

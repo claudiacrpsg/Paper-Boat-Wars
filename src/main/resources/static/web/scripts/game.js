@@ -44,10 +44,10 @@ let shipGrid = new Vue({
         },
 
 
-        allTheSalvos: function () {
-            let placedSalvos = this.salvoLocation.filter(salvo => salvo.location.length > 0);
-            return placedSalvos.length == 3;
-        },
+        // allTheSalvos: function () {
+        //     let placedSalvos = this.salvoLocation.filter(salvo => salvo.location.length > 0);
+        //     return placedSalvos.length == 3;
+        // },
 
     },
     methods: {
@@ -117,36 +117,34 @@ let shipGrid = new Vue({
             }
         },
         getSalvoes: function (data) {
+            var locations = Object.getOwnPropertyNames(data.oppShipLoc);
+            console.log(locations[0]);
             for (i = 0; i < data.Salvoes.length; i++) {
                 for (j = 0; j < data.Salvoes[i].SalvoLocation.length; j++) {
-                    // document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").innerHTML = this.data.Salvoes[i].Turn;
-                    // if (document.getElementById(data.EnemySalvoes[i].SalvoLocation[j] + "s").classList.contains("yellow")
-                    // || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j] + "s").classList.contains("orange")
-                    // || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j] + "s").classList.contains("red")
-                    // || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j] + "s").classList.contains("blue")
-                    // || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j] + "s").classList.contains("green")) {
-                    //     var img = document.createElement("img");
-                    //     img.className = "fire";
-                    //     img.src = "styles/flame.png";
-                    //     document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
-                    // } else {
-                    //     var img = document.createElement("img");
-                    //     img.className = "water";
-                    //     img.src = "styles/sea.png";
-                    //     document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
-                    // }
+                    if (locations.includes(data.Salvoes[i].SalvoLocation[j])) {
+                        var img = document.createElement("img");
+                        img.className = "fire";
+                        img.src = "styles/flame.png";
+                        document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
+                    } else {
+                        var img = document.createElement("img");
+                        img.className = "water";
+                        img.src = "styles/sea.png";
+                        document.getElementById(data.Salvoes[i].SalvoLocation[j] + "s").append(img);
+                    }
                 }
+
             }
         },
         getEnemySalvoes: function (data) {
             for (i = 0; i < data.EnemySalvoes.length; i++) {
                 for (j = 0; j < data.EnemySalvoes[i].SalvoLocation.length; j++) {
                     // document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).innerHTML = this.data.EnemySalvoes[i].Turn;
-                    if (document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("yellow")
-                    || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("orange")
-                    || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("red")
-                    || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("blue")
-                    || document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("green")) {
+                    if (document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("yellow") ||
+                        document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("orange") ||
+                        document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("red") ||
+                        document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("blue") ||
+                        document.getElementById(data.EnemySalvoes[i].SalvoLocation[j]).classList.contains("green")) {
                         var img = document.createElement("img");
                         img.className = "fire";
                         img.src = "styles/flame.png";
@@ -160,9 +158,7 @@ let shipGrid = new Vue({
                 }
             }
         },
-        // hits: function(){
-        //     if
-        // },
+
         getShips: function () {
             fetch('/api/games/players/' + shipGrid.gp + '/ships', {
                 credentials: 'include',
@@ -183,14 +179,17 @@ let shipGrid = new Vue({
                 alert("Error")
             });
         },
+
         getShipLengthYellow: function () {
             this.shipLength = 1;
             this.hover = true;
         },
+
         getShipLengthOrange: function () {
             this.shipLength = 2;
             this.hover = true;
         },
+
         getShipLengthRed: function () {
             this.shipLength = 3;
             this.hover = true;
@@ -199,16 +198,20 @@ let shipGrid = new Vue({
             this.shipLength = 4;
             this.hover = true;
         },
+
         getShipLengthGreen: function () {
             this.shipLength = 5;
             this.hover = true;
         },
+
         itsVertical: function () {
             this.vertical = true;
         },
+
         itsHorizontal: function () {
             this.vertical = false;
         },
+
         shipHover: function () {
             this.overlap = false;
             if (this.hover == true) {
@@ -302,6 +305,7 @@ let shipGrid = new Vue({
                 }
             }
         },
+
         shipClean: function () {
             var letter = event.target.id.substr(0, 1);
             var number = event.target.id.substr(1, 2);
@@ -346,6 +350,7 @@ let shipGrid = new Vue({
                 }
             }
         },
+
         storeShipLocation: function () {
             if (this.hover) {
                 var letter = event.target.id.substr(0, 1);
@@ -388,7 +393,6 @@ let shipGrid = new Vue({
                     }
                     this.hover = false;
                 }
-
                 if (this.vertical == true) {
                     for (var i = 0; i < this.shipLength; i++) {
                         var id = this.letters[this.letters.indexOf(letter) + i] + number;
@@ -451,20 +455,18 @@ let shipGrid = new Vue({
             });
         },
 
-
-
         callSalvos1: function () {
             this.salvoHover = true;
             this.fire = "one";
         },
-        // callSalvos2: function () {
-        //     this.salvoHover = true;
-        //     this.fire = "two";
-        // },
-        // callSalvos3: function () {
-        //     this.salvoHover = true;
-        //     this.fire = "three";
-        // },
+        callSalvos2: function () {
+            this.salvoHover = true;
+            this.fire = "two";
+        },
+        callSalvos3: function () {
+            this.salvoHover = true;
+            this.fire = "three";
+        },
 
         makeSalvosHover: function () {
             this.overlap = false;
@@ -492,8 +494,8 @@ let shipGrid = new Vue({
                 document.getElementById(id).classList.add("salvoMatch2");
                 if (!this.overlap) {
                     if (this.fire == "one") {
-                        var fire1 = document.getElementById("match1");
-                        // fire1.style.display = "none";
+                        document.getElementById("match1").style.display = "none";
+                        document.getElementById("match2").style.display = "inline";
                         if (id.length == 3) {
                             this.salvoLocations.push(id.substr(0, 2));
                         } else {
@@ -501,26 +503,26 @@ let shipGrid = new Vue({
                         }
                         console.log(this.salvoLocations)
                     }
-                    // if (this.fire == "two") {
-                    //     var fire2 = document.getElementById("match2");
-                    //     fire2.style.display = "none";
-                    //     if (id.length == 3) {
-                    //         this.salvoLocations.push(id.substr(0, 2));
-                    //     } else {
-                    //         this.salvoLocations.push(id.substr(0, 3));
-                    //     }
-                    //     console.log(this.salvoLocations)
-                    // }
-                    // if (this.fire == "three") {
-                    //     var fire3 = document.getElementById("match3");
-                    //     fire3.style.display = "none";
-                    //     if (id.length == 3) {
-                    //         this.salvoLocations.push(id.substr(0, 2));
-                    //     } else {
-                    //         this.salvoLocations.push(id.substr(0, 3));
-                    //     }
-                    //     console.log(this.salvoLocations)
-                    // }
+                    if (this.fire == "two") {
+                        document.getElementById("match2").style.display = "none";
+                        document.getElementById("match3").style.display = "inline";
+                        if (id.length == 3) {
+                            this.salvoLocations.push(id.substr(0, 2));
+                        } else {
+                            this.salvoLocations.push(id.substr(0, 3));
+                        }
+                        console.log(this.salvoLocations)
+                    }
+                    if (this.fire == "three") {
+                        document.getElementById("match3").style.display = "none";
+                        document.getElementById("match4").style.display = "inline";
+                        if (id.length == 3) {
+                            this.salvoLocations.push(id.substr(0, 2));
+                        } else {
+                            this.salvoLocations.push(id.substr(0, 3));
+                        }
+                        console.log(this.salvoLocations)
+                    }
                 }
             }
             this.salvoHover = false;
