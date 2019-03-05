@@ -283,4 +283,23 @@ public class SalvoController {
         return dto;
     }
 
+
+
+//    private Map<String, Object> salvoList (GamePlayer gamePlayer) {
+//        List<String> gpShips = getGamePlayer(gamePlayer)
+//                .getSalvoes()
+//                .stream()
+//                .flatMap(salvo -> salvo.getLocation().stream())
+//                .collect(toList());
+//        return
+//    }
+
+//    private boolean shipIsSunk(List<String> Salvoes, Ship ship) {
+//        boolean shipIsSunk = ship.getLocation()
+//                .stream()
+//                .allMatch(locations -> Salvoes.contains(locations));
+//        return shipIsSunk;
+//    }
+
+
 }
