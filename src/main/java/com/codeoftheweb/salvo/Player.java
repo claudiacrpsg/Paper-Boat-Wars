@@ -1,7 +1,5 @@
 package com.codeoftheweb.salvo;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,9 +32,6 @@ public class Player {
         this.userName = userName;
         this.email = email;
         this.password = password;
-
-
-
     }
 
     public Score getScore(Game game) {

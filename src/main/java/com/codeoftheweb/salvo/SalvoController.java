@@ -31,12 +31,6 @@ public class SalvoController {
     private SalvoRepository salvoRepository;
 
 
-//    @RequestMapping("/players")
-//    public List<Player> getPlayer() {
-//        return repository.findAll();
-//    }
-
-
     @RequestMapping("/games")
     public Map<String, Object> getGame(Authentication authentication) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
@@ -58,7 +52,6 @@ public class SalvoController {
     public List<GamePlayer> getGamePlayer() {
         return gamePlayerRep.findAll();
     }
-
 
     private Map<String, Object> gameDTO(Game game) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
@@ -109,23 +102,22 @@ public class SalvoController {
             }
             return dto;
         } else {
-            return playerInfo("YOU SHALL NOT PASS!", HttpStatus.FORBIDDEN);
+            return playerInfo("You shall not pass!", HttpStatus.FORBIDDEN);
         }
     }
 
     //access enemy information
     private GamePlayer oppGamePlayer(GamePlayer gamePlayer) {
-        return gamePlayer.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayer.getId()).findAny().orElse(null);
-
+        return gamePlayer.getGame().getGamePlayers()
+                .stream()
+                .filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayer.getId()).findAny().orElse(null);
     }
-
 
     public Map<String, Object> shipsDTO(Ship ship) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("ShipId", ship.getId());
         dto.put("Type", ship.getType());
         dto.put("Location", ship.getLocation());
-
         return dto;
     }
 
@@ -135,7 +127,6 @@ public class SalvoController {
         dto.put("SalvoId", salvo.getId());
         dto.put("Turn", salvo.getTurn());
         dto.put("SalvoLocation", salvo.getSalvoLocation());
-
         return dto;
     }
 

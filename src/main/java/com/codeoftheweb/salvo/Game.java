@@ -1,10 +1,6 @@
 package com.codeoftheweb.salvo;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,15 +19,16 @@ public class Game{
     @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
     private Set<GamePlayer> gamePlayers = new HashSet<>(); //this has to be initialized
 
-
     public void addGamePlayer(GamePlayer gamePlayer) {
         gamePlayer.setGame(this);
         gamePlayers.add(gamePlayer);
     }
 
-    public Game(){
+    public Game(){ }
+
+    public Game(Date date){
         this.date = new Date();
-        }
+    }
 
     public Date getDate() {
         return date;
